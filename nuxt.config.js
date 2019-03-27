@@ -1,6 +1,6 @@
 const VuetifyLoaderPlugin = require('vuetify-loader/lib/plugin')
-const bodyParser =  require('body-parser')
 const pkg = require('./package')
+require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
@@ -55,6 +55,9 @@ module.exports = {
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
   },
+  dotenv: {
+    filename: '.env'
+  },
 
   /*
    ** Build configuration
@@ -68,8 +71,6 @@ module.exports = {
       }
     },
   serverMiddleware: [
-    bodyParser.urlencoded({ extended: true  }), 
-    bodyParser.json()
     ],
     /*
      ** You can extend webpack config here

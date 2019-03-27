@@ -13,7 +13,7 @@ const loginRouter = require('./login')
 async function start() {
 
   // bodypaser
-  app.use(express.json())
+  app.use(bodyParser.json())
   // app.use(bodyParser.urlencoded({ extended: true }));
 
   // api/login router
