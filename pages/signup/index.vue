@@ -18,6 +18,19 @@
             required
           ></v-text-field>
           <v-text-field
+            ref="email"
+            v-model="email"
+            name="email"
+            type="email"
+            :rules="[rules.required, rules.email]"
+            :error-messages="errorMessages"
+            prepend-icon="fas fa-at"
+            label="E-mail"
+            counter
+            clearable
+            required
+          ></v-text-field>
+          <v-text-field
             ref="password"
             v-model="password"
             :append-icon="pwdShow ? 'visibility' : 'visibility_off'"
@@ -32,13 +45,17 @@
             required
             @click:append="pwdShow = !pwdShow"
           ></v-text-field>
+
           <v-spacer></v-spacer>
         </v-card-text>
         <v-btn block color="primary" depressed large flat href="/"
-          >SiGN UP</v-btn
+          >SIGN UP</v-btn
         >
         <v-divider />
         <v-card-actions>
+          <v-btn fab dark small color="black">
+            <v-icon dark>fab fa-github</v-icon>
+          </v-btn>
           <v-spacer></v-spacer>
           <p class="pa-2 text-xs-right">
             <nuxt-link class="pt-5" to="/login">LOGIN IN</nuxt-link>
@@ -53,7 +70,14 @@ export default {
   layout: 'auth',
   data() {
     return {
-      pwdShow: false
+      pwdShow: false,
+      rules: {
+        required: value => !!value || 'Required.',
+        email: value => {
+          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+          return pattern.test(value) || 'Invalid e-mail.'
+        }
+      }
     }
   },
   methods: {

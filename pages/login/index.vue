@@ -39,9 +39,12 @@
         >
         <v-divider />
         <v-card-actions>
+          <v-btn fab dark small color="black">
+            <v-icon dark>fab fa-github</v-icon>
+          </v-btn>
           <v-spacer></v-spacer>
           <p class="pa-2 text-xs-right">
-            <nuxt-link class="pt-5" to="/signup">Sign UP</nuxt-link>
+            <nuxt-link class="pt-5" to="/signup">SIGN UP</nuxt-link>
           </p>
         </v-card-actions>
       </v-card>

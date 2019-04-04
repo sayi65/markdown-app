@@ -1,10 +1,10 @@
 <template>
-  <v-container grid-list-md text-xs-center>
-    <v-layout row flex-child wrap max-width="1000">
+  <v-container>
+    <v-layout flex-child wrap>
       <v-flex xs12 sm12 md8>
         <v-layout column justify-center align-center>
           <v-flex v-for="image in images" :key="image.num">
-            <v-card class="mb-2 mr-2 ml-2" max-width="1100">
+            <v-card class="mb-2 mr-2 ml-2" max-width="700">
               <v-card-title>
                 <v-list-tile class="grow">
                   <v-list-tile-avatar color="grey darken-3">
@@ -46,41 +46,19 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm12 md4 d-flex>
-        <TopRNav />
-      </v-flex>
     </v-layout>
   </v-container>
 </template>
-
 <script>
-import TopRNav from '~/components/TopRNav.vue'
-
 export default {
-  components: {
-    TopRNav
-  },
+  layout: 'default',
   data() {
     return {
-      images: Array.from(new Array(10)).map((e, i) => ({
-        num: i + 1
-      }))
+      pwdShow: false
     }
+  },
+  methods: {
+    submit() {}
   }
 }
 </script>
-
-<style>
-.top-IsNotLogin {
-  height: 500px !important;
-}
-.v-content {
-  padding-top: 5px !important;
-}
-.container {
-  padding-top: 10px !important;
-}
-.caption {
-  float: right;
-}
-</style>

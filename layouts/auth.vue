@@ -7,7 +7,7 @@
         fixed
         flat
         height="60"
-        color="teal accent-3"
+        color="transparent"
       >
         <v-toolbar-title v-text="title" />
         <v-spacer />
