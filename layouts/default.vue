@@ -39,19 +39,56 @@
             >
               <v-toolbar-title v-text="title" />
               <v-spacer />
-              <v-menu open-on-hover class="pr-4">
-                <v-avatar slot="activator">
-                  <img
-                    src="https://cdn.vuetifyjs.com/images/john.jpg"
-                    alt="John"
-                  />
-                </v-avatar>
-                <v-list>
-                  <v-list-tile v-for="(item, index) in items" :key="index">
-                    <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                  </v-list-tile>
-                </v-list>
-              </v-menu>
+              <v-toolbar-items>
+                <v-menu class="pr-4" offset-y>
+                  <v-list slot="activator" class="transparent">
+                    <v-avatar>
+                      <img
+                        src="https://cdn.vuetifyjs.com/images/john.jpg"
+                        alt="John"
+                        class="mr-2"
+                      />
+                      <v-icon dark>fas fa-angle-down</v-icon>
+                    </v-avatar>
+                  </v-list>
+                  <!-- <v-avatar slot="activator">
+                  
+                  <v-icon >fas fa-angle-down</v-icon>
+                </v-avatar> -->
+                  <v-list>
+                    <v-list-tile to="/_id">
+                      <v-icon small class="mr-2" color="red"
+                        >fas fa-user-cog</v-icon
+                      >
+                      <v-list-tile-content>
+                        <v-list-tile-title>
+                          Your Profile
+                        </v-list-tile-title>
+                      </v-list-tile-content>
+                    </v-list-tile>
+
+                    <v-list-tile to="/setting/profile">
+                      <v-icon class="mr-2" small color="red">fas fa-cog</v-icon>
+                      <v-list-tile-content>
+                        <v-list-tile-title>
+                          Setting
+                        </v-list-tile-title>
+                      </v-list-tile-content>
+                    </v-list-tile>
+                    <v-divider />
+                    <v-list-tile to="/logout">
+                      <v-icon class="mr-2" small color="red"
+                        >fas fa-sign-out-alt</v-icon
+                      >
+                      <v-list-tile-content>
+                        <v-list-tile-title>
+                          Logout
+                        </v-list-tile-title>
+                      </v-list-tile-content>
+                    </v-list-tile>
+                  </v-list>
+                </v-menu>
+              </v-toolbar-items>
             </v-toolbar>
           </v-layout>
         </v-container>
@@ -71,13 +108,7 @@ export default {
       title: 'Markdown',
       toolbarColor: 'transparent',
       shadow: true,
-      isLogin: true,
-      items: [
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me' },
-        { title: 'Click Me 2' }
-      ]
+      isLogin: true
     }
   },
   methods: {
