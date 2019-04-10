@@ -1,6 +1,8 @@
 <template>
-  <v-layout row flex-child wrap max-width="400">
-    <v-sheet color="#32deaf" width="400"> ffff</v-sheet>
+  <v-layout column justify-center align-center>
+    <v-flex grow>
+      <v-sheet color="#32deaf" width="400" height="400"> ffff</v-sheet>
+    </v-flex>
   </v-layout>
 </template>
 <script>
