@@ -1,10 +1,10 @@
 <template>
-  <v-container grid-list-md text-xs-center xl4>
-    <v-layout row flex-child justify-center wrap max-width="1000">
-      <v-flex xs12 sm12 md8 xl6>
+  <v-container grid-list-lg text-xs-center>
+    <v-layout row wrap justify-center>
+      <v-flex xs12 sm12 md8 lg7 xl5>
         <v-layout column justify-center align-center>
           <v-flex v-for="image in images" :key="image.num">
-            <v-card class="mb-2 mr-2 ml-2" max-width="1100">
+            <v-card class="mb-2 mx-2" max-width="1100">
               <v-card-title>
                 <v-list-tile class="grow">
                   <v-list-tile-avatar color="grey darken-3">
@@ -46,7 +46,7 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm12 md4 xl4 d-flex>
+      <v-flex xs12 sm12 md4 lg4 xl4>
         <TopRNav />
       </v-flex>
     </v-layout>
