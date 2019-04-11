@@ -1,7 +1,7 @@
 <template>
   <v-container grid-list-lg text-xs-center>
     <v-layout row wrap justify-center>
-      <v-flex xs12 sm12 md8 lg7 xl5>
+      <v-flex xs12 sm12 md8 lg8 xl5>
         <v-layout column justify-center align-center>
           <v-flex v-for="image in images" :key="image.num">
             <v-card class="mb-2 mx-2" max-width="1100">
