@@ -23,17 +23,51 @@
                 >Change Profile</v-btn
               >
               <v-divider />
-              <!-- <v-card-actions> </v-card-actions> -->
             </v-card>
           </v-flex>
         </v-layout>
       </v-flex>
       <v-flex xs12 sm4 md5 lg5 xl4 class="mb-4">
-        <v-card dark color="secondary">
-          <v-card-text>two</v-card-text>
-        </v-card>
+        <v-layout column>
+          <v-flex v-for="image in 9" :key="image.num">
+            <v-card>
+              <v-card-title class="pa-0">
+                <v-layout
+                  align-end
+                  justify-space-between
+                  row
+                  fill-height
+                  class="px-3"
+                >
+                  <v-flex>
+                    <v-list>
+                      <v-list-tile-avatar
+                        ><v-img
+                          src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+                        ></v-img>
+                      </v-list-tile-avatar>
+                    </v-list>
+                  </v-flex>
+                  <v-flex>
+                    <span class="grey--text caption"
+                      >created at 2019/04/30</span
+                    >
+                  </v-flex>
+                </v-layout>
+              </v-card-title>
+              <v-divider />
+              <v-card-text>
+                <nuxt-link to="/_id/item/_item">
+                  "Turns out semicolon-less style is easier and safer in
+                  TSbecause most gotcha edge cases are type invalid as well."
+                </nuxt-link>
+                <v-spacer />
+              </v-card-text>
+            </v-card>
+          </v-flex>
+        </v-layout>
       </v-flex>
-      <v-flex xs12 sm4 md3 lg3 xl2>
+      <v-flex xs12 sm3 md3 lg3 xl2>
         <!-- <v-layout>
           <v-flex hidden-xs-only>
             <v-list class="transparent py-0">
@@ -92,39 +126,9 @@ export default {
     MypageNav
   },
   data() {
-    return {
-      active: null,
-      bottomNav: 'Item',
-      items: [
-        {
-          icon: 'far fa-clipboard',
-          backClass: 'cyan lighten-3',
-          iconClass: 'cyan lighten-3',
-          title: 'Item',
-          link: '/_id'
-        },
-        {
-          icon: 'far fa-paper-plane',
-          backClass: '',
-          iconClass: 'grey lighten-1 white--text',
-          title: 'Following',
-          link: '/_id/following'
-        },
-        {
-          icon: 'far fa-grin-alt',
-          backClass: '',
-          iconClass: 'grey lighten-1 white--text',
-          title: 'Followers',
-          link: '/_id/followers'
-        }
-      ]
-    }
+    return {}
   },
-  methods: {
-    followers() {
-      console.log(11111111)
-    }
-  }
+  methods: {}
 }
 </script>
 <style>
@@ -136,5 +140,8 @@ export default {
 }
 .tile:hover {
   background-color: #e3f2fd;
+}
+.caption {
+  float: right;
 }
 </style>
