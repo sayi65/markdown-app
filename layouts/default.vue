@@ -51,10 +51,6 @@
                       <v-icon dark>fas fa-angle-down</v-icon>
                     </v-avatar>
                   </v-list>
-                  <!-- <v-avatar slot="activator">
-                  
-                  <v-icon >fas fa-angle-down</v-icon>
-                </v-avatar> -->
                   <v-list>
                     <v-list-tile to="/_id">
                       <v-icon small class="mr-2" color="red"
