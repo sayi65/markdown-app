@@ -3,7 +3,7 @@
     <v-layout flex-child wrap>
       <v-flex xs12 sm12 md8>
         <v-layout column justify-center align-center>
-          <v-flex v-for="image in images" :key="image.num">
+          <v-flex>
             <v-card class="mb-2 mr-2 ml-2" max-width="700">
               <v-card-title>
                 <v-list-tile class="grow">
@@ -62,3 +62,11 @@ export default {
   }
 }
 </script>
+<style>
+.v-content {
+  padding-top: 5px !important;
+}
+.container {
+  padding-top: 10px !important;
+}
+</style>
