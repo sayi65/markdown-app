@@ -28,12 +28,12 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm4 md5 lg4 xl4 class="mb-4">
+      <v-flex xs12 sm4 md5 lg5 xl4 class="mb-4">
         <v-card dark color="secondary">
           <v-card-text>two</v-card-text>
         </v-card>
       </v-flex>
-      <v-flex xs12 sm4 md3 lg3 xl2>
+      <v-flex xs12 sm3 md3 lg3 xl2>
         <!-- <v-layout>
           <v-flex hidden-xs-only>
             <v-list class="transparent py-0">
