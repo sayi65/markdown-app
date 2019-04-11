@@ -94,19 +94,19 @@ export default {
   data() {
     return {
       active: null,
-      bottomNav: 'Item',
+      bottomNav: 'Following',
       items: [
         {
           icon: 'far fa-clipboard',
-          backClass: 'cyan lighten-3',
-          iconClass: 'cyan lighten-3',
+          backClass: '',
+          iconClass: 'grey lighten-1 white--text',
           title: 'Item',
           link: '/_id'
         },
         {
           icon: 'far fa-paper-plane',
-          backClass: '',
-          iconClass: 'grey lighten-1 white--text',
+          backClass: 'cyan lighten-3',
+          iconClass: 'cyan lighten-3',
           title: 'Following',
           link: '/_id/following'
         },

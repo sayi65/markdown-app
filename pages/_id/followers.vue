@@ -42,9 +42,8 @@
                 :key="item.title"
                 :class="item.backClass"
                 avatar
-                nuxt
                 class="tile"
-                :to="item.link"
+                nuxt
               >
                 <v-list-tile-avatar>
                   <v-icon :class="[item.iconClass]">{{ item.icon }}</v-icon>
@@ -57,20 +56,13 @@
             </v-list>
           </v-flex>
           <v-flex hidden-sm-and-up>
-            <v-bottom-nav
-              :active.sync="bottomNav"
-              :value="true"
-              shift
-              fixed
-              mandatory
-            >
+            <v-bottom-nav :active.sync="bottomNav" :value="true" shift fixed>
               <v-btn
                 v-for="item in items"
                 :key="item.title"
-                color="cyan lighten-3"
+                :color="item.backClass"
                 :value="item.title"
                 flat
-                :to="item.link"
               >
                 <span>{{ item.title }}</span>
                 <v-icon>{{ item.icon }}</v-icon>
@@ -94,12 +86,12 @@ export default {
   data() {
     return {
       active: null,
-      bottomNav: 'Item',
+      bottomNav: 'Followers',
       items: [
         {
           icon: 'far fa-clipboard',
-          backClass: 'cyan lighten-3',
-          iconClass: 'cyan lighten-3',
+          backClass: '',
+          iconClass: 'grey lighten-1 white--text',
           title: 'Item',
           link: '/_id'
         },
@@ -112,8 +104,8 @@ export default {
         },
         {
           icon: 'far fa-grin-alt',
-          backClass: '',
-          iconClass: 'grey lighten-1 white--text',
+          backClass: 'cyan lighten-3',
+          iconClass: 'cyan lighten-3',
           title: 'Followers',
           link: '/_id/followers'
         }
