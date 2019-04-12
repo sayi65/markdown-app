@@ -28,7 +28,7 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm4 md5 lg5 xl4 class="mb-4">
+      <v-flex xs12 sm6 md5 lg5 xl4 class="mb-4">
         <v-card dark color="secondary">
           <v-card-text>two</v-card-text>
         </v-card>

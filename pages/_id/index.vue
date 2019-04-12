@@ -27,7 +27,7 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex xs12 sm4 md5 lg5 xl4 class="mb-4">
+      <v-flex xs12 sm6 md5 lg5 xl4 class="mb-4">
         <v-layout column>
           <v-flex v-for="image in 9" :key="image.num">
             <v-card>
@@ -39,7 +39,7 @@
                   fill-height
                   class="px-3"
                 >
-                  <v-flex sm10>
+                  <v-flex xs11 sm11>
                     <v-list>
                       <v-list-tile>
                         <v-list-tile-avatar
@@ -49,22 +49,23 @@
                         </v-list-tile-avatar>
                         <v-list-tile-action-text>
                           <nuxt-link to="/_id">@Kangaroo</nuxt-link>
-
-                          Created at 2019-04-30
+                          <p class="mb-1">
+                            Created at 2019-04-30
+                          </p>
                         </v-list-tile-action-text>
                       </v-list-tile>
                     </v-list>
                   </v-flex>
-                  <v-flex sm5>
+                  <v-flex xs4 sm5>
                     <v-list>
                       <v-list-tile-sub-title>
                         <p
-                          class="grey--text text--darken-2 font-weight-light caption"
+                          class="grey--text text--darken-2 font-weight-light caption mb-1"
                         >
                           <v-icon right small>fas fa-thumbs-up</v-icon>16,544
                         </p>
                         <p
-                          class="grey--text text--darken-2 font-weight-light caption"
+                          class="grey--text text--darken-2 font-weight-light caption mb-1"
                         >
                           <v-icon right small>fas fa-comment</v-icon>16
                         </p>
