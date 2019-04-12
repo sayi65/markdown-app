@@ -39,7 +39,7 @@
                   fill-height
                   class="px-3"
                 >
-                  <v-flex>
+                  <v-flex sm5>
                     <v-list>
                       <v-list-tile-avatar
                         ><v-img
@@ -48,10 +48,29 @@
                       </v-list-tile-avatar>
                     </v-list>
                   </v-flex>
-                  <v-flex>
-                    <span class="grey--text caption"
-                      >created at 2019/04/30</span
-                    >
+                  <v-flex sm5>
+                    <v-list>
+                      <v-list-tile-sub-title>
+                        <p
+                          class="grey--text text--darken-2 font-weight-light caption"
+                        >
+                          <v-icon right small>fas fa-thumbs-up</v-icon>16,544
+                        </p>
+                        <p
+                          class="grey--text text--darken-2 font-weight-light caption"
+                        >
+                          <v-icon right small>fas fa-comment</v-icon>16
+                        </p>
+                      </v-list-tile-sub-title>
+                    </v-list>
+                    <!-- <v-layout align-space-around justify-start column>
+                      <span class="grey--text caption"
+                        >created at 2019/04/30</span
+                      >
+                      <span class="grey--text caption"
+                        >created at 2019/04/30</span
+                      >
+                    </v-layout> -->
                   </v-flex>
                 </v-layout>
               </v-card-title>
