@@ -39,13 +39,20 @@
                   fill-height
                   class="px-3"
                 >
-                  <v-flex sm5>
+                  <v-flex sm10>
                     <v-list>
-                      <v-list-tile-avatar
-                        ><v-img
-                          src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-                        ></v-img>
-                      </v-list-tile-avatar>
+                      <v-list-tile>
+                        <v-list-tile-avatar
+                          ><v-img
+                            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+                          ></v-img>
+                        </v-list-tile-avatar>
+                        <v-list-tile-action-text>
+                          <nuxt-link to="/_id">@Kangaroo</nuxt-link>
+
+                          Created at 2019-04-30
+                        </v-list-tile-action-text>
+                      </v-list-tile>
                     </v-list>
                   </v-flex>
                   <v-flex sm5>
