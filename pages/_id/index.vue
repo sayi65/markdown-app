@@ -59,7 +59,10 @@
                 </v-card-title>
                 <v-divider />
                 <v-card-text>
-                  <nuxt-link to="/_id/item/_item" class="subheading">
+                  <nuxt-link
+                    to="/_id/item/_item"
+                    class="subheading black--text"
+                  >
                     "Turns out semicolon-less style is easier and safer in
                     TSbecause most gotcha edge cases are type invalid as well."
                   </nuxt-link>
