@@ -2,36 +2,10 @@
   <v-container grid-list-lg text-xs-center>
     <v-layout row justify-center wrap>
       <v-flex xs12 sm4 md4 lg4 xl3>
-        <v-layout align-start justify-start column fill-height>
-          <v-flex>
-            <v-card class="mx-2">
-              <v-img
-                src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-              ></v-img>
-              <v-divider />
-              <div>
-                <h3 class="headline mb-0">@Kangaroo</h3>
-              </div>
-              <v-card-text
-                >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.</v-card-text
-              >
-              <v-divider />
-              <v-btn nuxt href="/setting/profile" block flat
-                >Change Profile</v-btn
-              >
-              <v-divider />
-              <!-- <v-card-actions> </v-card-actions> -->
-            </v-card>
-          </v-flex>
-        </v-layout>
+        <ProfileCard />
       </v-flex>
       <v-flex xs12 sm6 md5 lg5 xl4 class="mb-4">
-        <v-card dark color="secondary">
-          <v-card-text>two</v-card-text>
-        </v-card>
+        <FollowList />
       </v-flex>
       <v-flex xs12 sm3 md3 lg3 xl2>
         <!-- <v-layout>
@@ -77,11 +51,15 @@
 </template>
 <script>
 import MypageNav from '~/components/MypageNav.vue'
+import FollowList from '~/components/FollowList.vue'
+import ProfileCard from '~/components/ProfileCard.vue'
 
 export default {
   layout: 'default',
   components: {
-    MypageNav
+    MypageNav,
+    FollowList,
+    ProfileCard
   },
   data() {
     return {
