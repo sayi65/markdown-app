@@ -20,7 +20,9 @@
                       ></v-img>
                     </v-list-tile-avatar>
                     <v-list-tile-action-text class="title">
-                      <nuxt-link to="/_id">@Kangaroo</nuxt-link>
+                      <nuxt-link to="/_id" class="black--text"
+                        >@Kangaroo</nuxt-link
+                      >
                     </v-list-tile-action-text>
                   </v-list-tile>
                 </v-list>

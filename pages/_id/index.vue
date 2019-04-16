@@ -29,7 +29,7 @@
                             ></v-img>
                           </v-list-tile-avatar>
                           <v-list-tile-action-text>
-                            <nuxt-link to="/_id" class="body-2"
+                            <nuxt-link to="/_id" class="body-2 black--text"
                               >@Kangaroo</nuxt-link
                             >
                             <p class="mb-1">
@@ -58,7 +58,7 @@
                   </v-layout>
                 </v-card-title>
                 <v-divider />
-                <v-card-text>
+                <v-card-text class="text-xs-left">
                   <nuxt-link
                     to="/_id/item/_item"
                     class="subheading black--text"

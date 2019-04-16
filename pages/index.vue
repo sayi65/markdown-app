@@ -37,9 +37,9 @@
               </v-card-title>
               <v-divider />
 
-              <v-card-text class="title">
-                "Turns out semicolon-less style is easier and safer in TS
-                because most gotcha edge cases are type invalid as well."
+              <v-card-text class="title text-xs-left">
+                C++標準化委員会は踏み抜きやすいUndefined Behavior
+                TOP100のようなものを公式に出すべきではないか
                 <v-spacer />
               </v-card-text>
             </v-card>

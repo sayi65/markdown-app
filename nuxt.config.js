@@ -43,7 +43,10 @@ module.exports = {
    */
   plugins: [
     '@/plugins/vuetify',
-    '@/plugins/scroll'
+    '@/plugins/scroll',
+    {
+    src:'@/plugins/scrollto', ssr:false
+    }
   ],
 
   /*
