@@ -49,7 +49,7 @@
           </v-card-text>
           <v-card-actions>
             <v-spacer />
-            <v-btn outline flat>Following</v-btn>
+            <v-btn outline flat color="green">Following</v-btn>
           </v-card-actions>
         </v-card>
       </v-hover>

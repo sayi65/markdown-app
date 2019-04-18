@@ -3,8 +3,8 @@
     <v-layout justify-center row>
       <v-flex md1 lg1 xl1 hidden-sm-and-down>
         <v-sheet color="transparent" class="sticky-btn mt-5 text-md-center">
-          <span class="headline font-weight-bold indigo--text">1100</span>
-          <v-btn fab color="indigo" class="mx-0" outline>
+          <span class="headline font-weight-bold green--text">1100</span>
+          <v-btn class="sticky-btn-color mx-0" fab color="green" outline>
             <v-icon>fas fa-thumbs-up</v-icon>
           </v-btn>
         </v-sheet>
@@ -112,7 +112,7 @@
                 >
               </v-flex>
               <v-flex xs3 sm3 md3 lg2 class="mr-4">
-                <v-btn flat outline right color="indigo">
+                <v-btn flat outline right color="green">
                   <v-icon dark left>far fa-paper-plane</v-icon>Follow</v-btn
                 >
               </v-flex>
@@ -138,9 +138,12 @@
           <v-navigation-drawer permanent floating hide-overlay>
             <v-list dense color="transparent">
               <v-list-tile v-for="(item, i) in items" :key="i" value="true">
-                <nuxt-link v-scroll-to="item.link" to>{{
-                  item.title
-                }}</nuxt-link>
+                <nuxt-link
+                  v-scroll-to="item.link"
+                  to
+                  class="blue-grey--text text--darken-4"
+                  >{{ item.title }}</nuxt-link
+                >
               </v-list-tile>
             </v-list>
           </v-navigation-drawer>
@@ -265,7 +268,7 @@ export default {
   }
 }
 </script>
-<style scope>
+<style scoped>
 .sticky-btn {
   position: sticky;
   top: 150px;
@@ -312,7 +315,7 @@ export default {
   border: solid 1px #9e9e9e !important;
   border-radius: 50%;
 }
-.v-btn.v-btn--outline {
+.sticky-btn-color {
   background: white !important;
 }
 </style>

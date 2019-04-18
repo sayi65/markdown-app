@@ -39,6 +39,16 @@
             >
               <v-toolbar-title v-text="title" />
               <v-spacer />
+              <v-toolbar-title>
+                <v-btn
+                  class="top-add-btn mr-4"
+                  large
+                  outline
+                  color="grey darken-4"
+                >
+                  <v-icon left dark>fas fa-pen-square</v-icon>New
+                </v-btn>
+              </v-toolbar-title>
               <v-toolbar-items>
                 <v-menu class="pr-4" offset-y>
                   <v-list slot="activator" class="transparent">
@@ -144,5 +154,8 @@ export default {
   height: 60px;
   display: flex;
   align-items: center;
+}
+.top-add-btn {
+  background: transparent !important;
 }
 </style>
