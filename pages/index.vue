@@ -15,8 +15,11 @@
                   </v-list-tile-avatar>
 
                   <v-list-tile-content>
-                    <v-list-tile-title>
-                      <nuxt-link to="/_id">@Evan You</nuxt-link>
+                    <v-list-tile-title class="grey--text">
+                      by
+                      <nuxt-link to="/_id" class="black--text"
+                        >Evan You</nuxt-link
+                      >
                     </v-list-tile-title>
                   </v-list-tile-content>
 
@@ -38,8 +41,10 @@
               <v-divider />
 
               <v-card-text class="title text-xs-left">
-                C++標準化委員会は踏み抜きやすいUndefined Behavior
-                TOP100のようなものを公式に出すべきではないか
+                <nuxt-link to="/_id/item/_item" class="subheading black--text">
+                  C++標準化委員会は踏み抜きやすいUndefined Behavior
+                  TOP100のようなものを公式に出すべきではないか
+                </nuxt-link>
                 <v-spacer />
               </v-card-text>
             </v-card>

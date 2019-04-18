@@ -5,7 +5,7 @@
         <ProfileCard />
       </v-flex>
       <v-flex xs12 sm6 md5 lg5 xl4 class="mb-4">
-        <FollowList />
+        <FollowersList />
       </v-flex>
       <v-flex xs12 sm3 md3 lg3 xl2>
         <!-- <v-layout>
@@ -51,14 +51,14 @@
 </template>
 <script>
 import MypageNav from '~/components/MypageNav.vue'
-import FollowList from '~/components/FollowList.vue'
+import FollowersList from '~/components/FollowersList.vue'
 import ProfileCard from '~/components/ProfileCard.vue'
 
 export default {
   layout: 'default',
   components: {
     MypageNav,
-    FollowList,
+    FollowersList,
     ProfileCard
   },
   data() {

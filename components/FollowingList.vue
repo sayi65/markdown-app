@@ -16,6 +16,7 @@
                   <v-list-tile>
                     <v-list-tile-avatar
                       ><v-img
+                        class="elevation-6"
                         src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
                       ></v-img>
                     </v-list-tile-avatar>
@@ -46,12 +47,19 @@
               </p>
             </v-layout>
           </v-card-text>
-          <v-card-actions>
+          <!-- <v-card-actions>
             <v-spacer />
             <v-btn outline flat>Following</v-btn>
-          </v-card-actions>
+          </v-card-actions> -->
         </v-card>
       </v-hover>
     </v-flex>
   </v-layout>
 </template>
+<script>
+export default {
+  data() {
+    return {}
+  }
+}
+</script>
