@@ -56,7 +56,7 @@
                       <img
                         src="https://cdn.vuetifyjs.com/images/john.jpg"
                         alt="John"
-                        class="mr-2"
+                        class="mr-2 elevation-2"
                       />
                       <v-icon dark>fas fa-angle-down</v-icon>
                     </v-avatar>
@@ -157,5 +157,8 @@ export default {
 }
 .top-add-btn {
   background: transparent !important;
+}
+#app {
+  background-color: #f5f5f5;
 }
 </style>

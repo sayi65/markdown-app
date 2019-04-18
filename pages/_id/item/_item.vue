@@ -130,18 +130,23 @@
           </v-flex>
         </v-layout>
       </v-flex>
-      <v-flex sm4 md3 lg3 xl2 hidden-xs-only>
-        <v-flex>
+      <v-flex sm4 md3 lg3 xl2 hidden-xs-only class="pt-0">
+        <v-flex class="pt-0">
           <v-card height="260" color="grey"> </v-card>
         </v-flex>
         <v-flex color="transparent" class="sticky-title">
-          <v-navigation-drawer permanent floating hide-overlay>
+          <v-navigation-drawer
+            permanent
+            floating
+            hide-overlay
+            class="transparent"
+          >
             <v-list dense color="transparent">
               <v-list-tile v-for="(item, i) in items" :key="i" value="true">
                 <nuxt-link
                   v-scroll-to="item.link"
                   to
-                  class="blue-grey--text text--darken-4"
+                  class="grey--text text--darken-1"
                   >{{ item.title }}</nuxt-link
                 >
               </v-list-tile>
@@ -151,7 +156,7 @@
       </v-flex>
     </v-layout>
 
-    <v-layout justify-center row class="mt-5">
+    <v-layout justify-center row class="mt-3">
       <v-flex md1 lg1 xl1 hidden-xl-and-down> </v-flex>
       <v-flex xs12 sm8 md8 lg8 xl6>
         <v-flex v-for="n in 5" :key="n">
@@ -160,6 +165,7 @@
               <v-list-tile class="pa-2">
                 <v-list-tile-avatar
                   ><v-img
+                    class="elevation-2"
                     src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
                   ></v-img>
                 </v-list-tile-avatar>
@@ -185,16 +191,6 @@
                 rem nemo numquam fuga ab at.
               </blockquote>
             </v-card-text>
-            <!-- <v-divider></v-divider> -->
-            <!-- <v-card-actions>
-              <v-spacer></v-spacer>
-              <v-btn :disabled="!isEditing" color="success" @click="save">
-                Save
-              </v-btn>
-            </v-card-actions> -->
-            <!-- <v-snackbar v-model="hasSaved" :timeout="2000" absolute bottom left>
-              Your profile has been updated
-            </v-snackbar> -->
           </v-card>
         </v-flex>
         <v-flex class="mt-3">
@@ -204,13 +200,12 @@
               <v-list-tile class="pa-2">
                 <v-list-tile-avatar
                   ><v-img
+                    class="elevation-2"
                     src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
                   ></v-img>
                 </v-list-tile-avatar>
                 <v-list-tile-action-text>
-                  <nuxt-link to="/_id" class="body-2 black--text"
-                    >@Kangaroo</nuxt-link
-                  >
+                  <span class="body-2 black--text">@Kangaroo</span>
                 </v-list-tile-action-text>
               </v-list-tile>
             </v-list>
@@ -257,15 +252,7 @@ export default {
       ]
     }
   },
-  methods: {
-    goToId(to) {
-      window.scrollTo(0, 500)
-    },
-    handleScroll: function(evt, el) {
-      console.log(evt)
-      console.log(el)
-    }
-  }
+  methods: {}
 }
 </script>
 <style scoped>

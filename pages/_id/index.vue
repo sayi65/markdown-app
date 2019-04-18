@@ -25,7 +25,7 @@
                         <v-list-tile>
                           <v-list-tile-avatar
                             ><v-img
-                              class="elevation-6"
+                              class="elevation-2"
                               src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
                             ></v-img>
                           </v-list-tile-avatar>
