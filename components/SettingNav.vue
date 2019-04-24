@@ -1,6 +1,6 @@
 <template>
   <v-layout>
-    <v-flex hidden-sm-and-down>
+    <v-flex hidden-xs-only>
       <v-list class="transparent py-0">
         <v-list-tile
           v-for="item in items"
@@ -28,7 +28,7 @@
         </v-list-tile>
       </v-list>
     </v-flex>
-    <v-flex hidden-md-and-up>
+    <v-flex hidden-sm-and-up>
       <v-bottom-nav
         :active.sync="bottomNav"
         :value="true"
