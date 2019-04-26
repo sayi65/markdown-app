@@ -5,9 +5,15 @@
         <SettingNav />
       </v-flex>
       <v-flex xs12 sm8 md8 lg8 xl6>
-        <v-card color="green">
-          two
-        </v-card>
+        <v-layout justify-start column class="pa-3 white">
+          <v-flex text-xs-left>
+            <h3 class="display-2">Account</h3>
+          </v-flex>
+          <v-divider class="mb-3" />
+          <v-flex>
+
+          </v-flex>
+        </v-layout>
       </v-flex>
     </v-layout>
   </v-container>
@@ -22,11 +28,11 @@ export default {
   },
   data() {
     return {
-      pwdShow: false
     }
   },
+  watch: {},
   methods: {
-    submit() {}
+    submit() {},
   }
 }
 </script>

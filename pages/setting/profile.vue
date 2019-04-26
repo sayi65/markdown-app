@@ -6,7 +6,7 @@
       </v-flex>
       <v-flex xs12 sm8 md8 lg8 xl6>
         <v-layout justify-start column class="pa-3 white">
-          <v-flex>
+          <v-flex text-xs-left>
             <h3 class="display-2">Public Profile</h3>
           </v-flex>
           <v-divider class="mb-3" />
@@ -15,6 +15,7 @@
               label="Name"
               counter
               box
+              clearable
               color="green"
               maxlength="20"
             ></v-text-field>
@@ -24,6 +25,7 @@
               label="Web/Blog"
               counter
               box
+              clearable
               color="green"
               prefix="http(s)://"
               maxlength="200"
@@ -34,6 +36,7 @@
               label="Company"
               counter
               box
+              clearable
               color="green"
               maxlength="200"
             ></v-text-field>
@@ -43,24 +46,26 @@
               label="Location"
               counter
               box
+              clearable
               color="green"
               maxlength="200"
             ></v-text-field>
           </v-flex>
           <v-flex>
             <v-textarea
-              v-model="bio"
               auto-grow
               box
+              clearable
               color="green"
               label="Bio"
             ></v-textarea>
           </v-flex>
           <v-flex>
             <v-text-field
-              label="facebook"
+              label="Facebook"
               value=""
               box
+              clearable
               color="green"
               prefix="https://www.facebook.com/"
             ></v-text-field>
@@ -70,15 +75,17 @@
               label="Linked In"
               value=""
               box
+              clearable
               color="green"
               prefix="https://www.linkedin.com/in/"
             ></v-text-field>
           </v-flex>
           <v-flex>
             <v-text-field
-              label="github"
+              label="Github"
               value=""
               box
+              clearable
               color="green"
               prefix="https://github.com/"
             ></v-text-field>
