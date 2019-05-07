@@ -92,7 +92,7 @@
           </v-flex>
           <v-divider />
           <v-flex class="mb-5">
-            <v-btn color="success" @click="save">
+            <v-btn color="success" @click="Save">
               Update
             </v-btn>
           </v-flex>

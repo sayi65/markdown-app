@@ -44,6 +44,7 @@ module.exports = {
   plugins: [
     '@/plugins/vuetify',
     '@/plugins/scroll',
+    '@/plugins/file-upload',
     {
     src:'@/plugins/scrollto', ssr:false
     }
