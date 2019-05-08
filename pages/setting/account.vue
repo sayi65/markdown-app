@@ -14,66 +14,52 @@
             <h1 class="headline">Picture</h1>
           </v-flex>
           <v-flex>
-            <div class="example-avatar">
-              <div
-                v-show="$refs.upload && $refs.upload.dropActive"
-                class="drop-active"
-              >
-                <h3>Drop files to upload</h3>
-              </div>
-              <div v-show="!edit" class="avatar-upload">
-                <div class="text-center p-2">
-                  <label for="avatar">
-                    <v-img
-                      :src="
-                        files.length
-                          ? files[0].url
-                          : 'https://www.gravatar.com/avatar/default?s=200&r=pg&d=mm'
-                      "
-                      class="rounded-circle"
-                    />
-                  </label>
-                </div>
-                <div class="text-center p-2">
-                  <file-upload
-                    ref="upload"
-                    v-model="files"
-                    extensions="gif,jpg,jpeg,png,webp"
-                    accept="image/*"
-                    name="avatar"
-                    class="btn btn-primary"
-                    post-action="/upload/post"
-                    :drop="!edit"
-                    @input-filter="inputFilter"
-                    @input-file="inputFile"
-                  >
-                    Upload avatar
-                  </file-upload>
-                </div>
-              </div>
+            <v-layout justify-start row>
+              <v-flex xs3>
+                <!-- <v-text-field
+                  label="Avatar Image URL"
+                  value=""
+                  box
+                  clearable
+                  color="green"
+                  placeholder="https://secure.gravatar.com/avatar/avatar.png"
+                ></v-text-field> -->
+                <v-menu
+                  v-model="isOpen"
+                  z-index="2"
+                  :close-on-content-click="false"
+                  :nudge-width="200"
+                  offset-x
+                  :return-value="removeFile(isOpen)"
+                >
+                  <template v-slot:activator="{ on }">
+                    <v-btn color="indigo" dark v-on="on">
+                      Upload Image
+                    </v-btn>
+                  </template>
 
-              <div v-show="files.length && edit" class="avatar-edit">
-                <div v-if="files.length" class="avatar-edit-image">
-                  <img ref="editImage" :src="files[0].url" />
-                </div>
-                <div class="text-center p-4">
-                  <button
-                    type="button"
-                    class="btn btn-secondary"
-                    @click.prevent="$refs.upload.clear"
-                  >
-                    Cancel
-                  </button>
-                  <button
-                    type="submit"
-                    class="btn btn-primary"
-                    @click.prevent="editSave"
-                  >
-                    Save
-                  </button>
-                </div>
-              </div>
-            </div>
+                  <v-card>
+                    <dropzone
+                      id="foo"
+                      ref="el"
+                      :options="options"
+                      :destroy-dropzone="true"
+                      :include-styling="false"
+                      @vdropzone-success="success"
+                      @vdropzone-max-files-exceeded="thumbnail"
+                      @vdropzone-error="error"
+                    >
+                    </dropzone>
+                  </v-card>
+                </v-menu>
+              </v-flex>
+              <v-flex xs8>
+                <v-avatar tile size="250">
+                  <v-img class="elevation-2" :src="avatarImage" alt="John">
+                  </v-img>
+                </v-avatar>
+              </v-flex>
+            </v-layout>
           </v-flex>
           <v-flex text-xs-left>
             <h1 class="headline">UserName</h1>
@@ -141,85 +127,53 @@
 </template>
 <script>
 import SettingNav from '~/components/SettingNav.vue'
-import FileUpload from 'vue-upload-component/dist/vue-upload-component.part.js'
+import Dropzone from 'nuxt-dropzone'
+import 'nuxt-dropzone/dropzone.css'
 export default {
   layout: 'default',
   components: {
     SettingNav,
-    FileUpload
+    Dropzone
   },
   data() {
     return {
-      files: [],
-      edit: false,
-      cropper: false
+      isOpen: false,
+      avatarImage: 'https://cdn.vuetifyjs.com/images/john.jpg',
+      options: {
+        url: 'https://httpbin.org/post',
+        parallelUploads: 1,
+        acceptedFiles: 'image/jpeg, image/jpg, image/png',
+        maxFilesize: 10,
+        thumbnailWidth: 180,
+        thumbnailHeight: 180,
+        addRemoveLinks: true,
+        maxFiles: 1,
+        dictDefaultMessage:
+          '<span> <i class="fas fa-cloud-upload-alt"></i> Upload Image</span>'
+      }
     }
   },
-  watch: {
-    edit(value) {
-      // if (value) {
-      //   this.$nextTick(function() {
-      //     if (!this.$refs.editImage) {
-      //       return
-      //     }
-      //     const cropper = new Cropper(this.$refs.editImage, {
-      //       aspectRatio: 1 / 1,
-      //       viewMode: 1
-      //     })
-      //     this.cropper = cropper
-      //   })
-      // } else if (this.cropper) {
-      //   this.cropper.destroy()
-      //   this.cropper = false
-      // }
-    }
+  mounted() {
+    // Everything is mounted and you can access the dropzone instance
+    // this.instance = this.$refs.el.dropzone
   },
   methods: {
     update() {},
-    editSave() {
-      this.edit = false
-      const oldFile = this.files[0]
-      const binStr = atob(
-        this.cropper
-          .getCroppedCanvas()
-          .toDataURL(oldFile.type)
-          .split(',')[1]
-      )
-      const arr = new Uint8Array(binStr.length)
-      for (let i = 0; i < binStr.length; i++) {
-        arr[i] = binStr.charCodeAt(i)
-      }
-      const file = new File([arr], oldFile.name, { type: oldFile.type })
-      this.$refs.upload.update(oldFile.id, {
-        file,
-        type: file.type,
-        size: file.size,
-        active: true
-      })
+    thumbnail: function(file) {
+      this.$refs.el.dropzone.removeFile(file)
     },
-    inputFile(newFile, oldFile, prevent) {
-      if (newFile && !oldFile) {
-        this.$nextTick(function() {
-          this.edit = true
-        })
-      }
-      if (!newFile && oldFile) {
-        this.edit = false
-      }
+    success: function(file, response) {
+      this.avatarImage = file.dataURL
+      // this.menu = !this.menu
+      // this.$refs.el.dropzone.removeFile(file)
     },
-    inputFilter(newFile, oldFile, prevent) {
-      if (newFile && !oldFile) {
-        if (!/\.(gif|jpg|jpeg|png|webp)$/i.test(newFile.name)) {
-          this.alert('Your choice is not a picture')
-          return prevent()
-        }
-      }
-      if (newFile && (!oldFile || newFile.file !== oldFile.file)) {
-        newFile.url = ''
-        const URL = window.URL || window.webkitURL
-        if (URL && URL.createObjectURL) {
-          newFile.url = URL.createObjectURL(newFile.file)
-        }
+    error: function(file, message, xhr) {
+      this.$refs.el.dropzone.removeFile(file)
+    },
+    removeFile: function(isOpen) {
+      console.log(isOpen)
+      if (!isOpen) {
+        // this.$refs.el.dropzone.removeAllFiles()
       }
     }
   }
@@ -232,38 +186,7 @@ export default {
 .container {
   padding-top: 10px !important;
 }
-.example-avatar .avatar-upload .rounded-circle {
-  width: 200px;
-  height: 200px;
-}
-.example-avatar .text-center .btn {
-  margin: 0 0.5rem;
-}
-.example-avatar .avatar-edit-image {
-  max-width: 100%;
-}
-.example-avatar .drop-active {
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  position: fixed;
-  z-index: 9999;
-  opacity: 0.6;
-  text-align: center;
-  background: #000;
-}
-.example-avatar .drop-active h3 {
-  margin: -0.5em 0 0;
-  position: absolute;
-  top: 50%;
-  left: 0;
-  right: 0;
-  -webkit-transform: translateY(-50%);
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-  font-size: 40px;
-  color: #fff;
-  padding: 0;
+.vue-dropzone > .dz-preview .dz-details {
+  background-color: rgba(29, 233, 182, 0.5) !important;
 }
 </style>
