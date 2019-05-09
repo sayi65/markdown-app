@@ -14,8 +14,8 @@
             <h1 class="headline">Picture</h1>
           </v-flex>
           <v-flex>
-            <v-layout justify-start row>
-              <v-flex xs3>
+            <v-layout align-end row fill-height wrap>
+              <v-flex xs12 sm12 md6 lg4>
                 <!-- <v-text-field
                   label="Avatar Image URL"
                   value=""
@@ -24,16 +24,24 @@
                   color="green"
                   placeholder="https://secure.gravatar.com/avatar/avatar.png"
                 ></v-text-field> -->
+                <v-avatar tile size="250">
+                  <v-img class="elevation-2" :src="avatarImage" alt="John">
+                  </v-img>
+                </v-avatar>
+              </v-flex>
+              <v-flex xs12 sm12 md4>
                 <v-menu
                   v-model="isOpen"
                   z-index="2"
                   :close-on-content-click="false"
                   :nudge-width="200"
                   offset-x
+                  right
+                  top
                   :return-value="removeFile(isOpen)"
                 >
                   <template v-slot:activator="{ on }">
-                    <v-btn color="indigo" dark v-on="on">
+                    <v-btn color="success" dark v-on="on">
                       Upload Image
                     </v-btn>
                   </template>
@@ -53,12 +61,6 @@
                   </v-card>
                 </v-menu>
               </v-flex>
-              <v-flex xs8>
-                <v-avatar tile size="250">
-                  <v-img class="elevation-2" :src="avatarImage" alt="John">
-                  </v-img>
-                </v-avatar>
-              </v-flex>
             </v-layout>
           </v-flex>
           <v-flex text-xs-left>
@@ -66,12 +68,11 @@
           </v-flex>
           <v-flex>
             <v-text-field
-              label="UserName"
-              box
-              readonly
+              solo
+              color="red"
+              disabled
+              single-line
               value="sayi65"
-              color="green"
-              maxlength="20"
             ></v-text-field>
           </v-flex>
           <v-flex text-xs-left>
@@ -188,5 +189,13 @@ export default {
 }
 .vue-dropzone > .dz-preview .dz-details {
   background-color: rgba(29, 233, 182, 0.5) !important;
+}
+.theme--light.v-text-field--solo > .v-input__control > .v-input__slot {
+  background: #afa6a699;
+}
+.theme--light.v-input--is-disabled .v-label,
+.theme--light.v-input--is-disabled input,
+.theme--light.v-input--is-disabled textarea {
+  color: black;
 }
 </style>

@@ -9,7 +9,11 @@
         height="60"
         color="transparent"
       >
-        <v-toolbar-title v-text="title" />
+        <v-toolbar-title>
+          <nuxt-link to="/" class="mt-2 pa-2">
+            <img src="/logo.svg" />
+          </nuxt-link>
+        </v-toolbar-title>
         <v-spacer />
       </v-toolbar>
 
