@@ -48,12 +48,14 @@
               </v-toolbar-title>
 
               <v-spacer />
-              <v-toolbar-title>
+              <v-toolbar-title v-if="this.$route.name !== 'new'">
                 <v-btn
                   class="top-add-btn mr-4"
                   large
                   outline
+                  nuxt
                   color="grey darken-4"
+                  to="/new"
                 >
                   <v-icon left dark>fas fa-pen-square</v-icon>New
                 </v-btn>
@@ -123,7 +125,8 @@ export default {
       title: 'Markdown',
       toolbarColor: 'transparent',
       shadow: true,
-      isLogin: true
+      isLogin: true,
+      isNewPath: false
     }
   },
   methods: {
