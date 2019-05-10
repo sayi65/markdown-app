@@ -125,8 +125,7 @@ export default {
       title: 'Markdown',
       toolbarColor: 'transparent',
       shadow: true,
-      isLogin: true,
-      isNewPath: false
+      isLogin: false
     }
   },
   methods: {

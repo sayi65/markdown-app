@@ -8,16 +8,12 @@ const app = express()
 const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
-const loginRouter = require('./login')
-
+// bodypaser
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true }));
 async function start() {
 
-  // bodypaser
-  app.use(bodyParser.json())
-  // app.use(bodyParser.urlencoded({ extended: true }));
-
-  // api/login router
-  app.use('/api', loginRouter) 
+  app.use('/api', require('./api/register'))
 
   // Init Nuxt.js
   const nuxt = new Nuxt(config)

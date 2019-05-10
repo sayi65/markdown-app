@@ -16,14 +16,6 @@
           <v-flex>
             <v-layout align-end row fill-height wrap>
               <v-flex xs12 sm12 md6 lg4>
-                <!-- <v-text-field
-                  label="Avatar Image URL"
-                  value=""
-                  box
-                  clearable
-                  color="green"
-                  placeholder="https://secure.gravatar.com/avatar/avatar.png"
-                ></v-text-field> -->
                 <v-avatar tile size="250">
                   <v-img class="elevation-2" :src="avatarImage" alt="John">
                   </v-img>

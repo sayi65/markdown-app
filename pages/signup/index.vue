@@ -3,52 +3,58 @@
     <v-flex xs12 sm10 md8 lg6>
       <v-card ref="form" color="white">
         <v-card-text>
-          <v-text-field
-            ref="username"
-            v-model="username"
-            name="username"
-            type="text"
-            :rules="[() => !!username || 'This field is required']"
-            :error-messages="errorMessages"
-            prepend-icon="fas fa-user-circle"
-            hint="At least 100 characters"
-            label="Login ID"
-            counter
-            clearable
-            required
-          ></v-text-field>
-          <v-text-field
-            ref="email"
-            v-model="email"
-            name="email"
-            type="email"
-            :rules="[rules.required, rules.email]"
-            :error-messages="errorMessages"
-            prepend-icon="fas fa-at"
-            label="E-mail"
-            counter
-            clearable
-            required
-          ></v-text-field>
-          <v-text-field
-            ref="password"
-            v-model="password"
-            :append-icon="pwdShow ? 'visibility' : 'visibility_off'"
-            prepend-icon="fas fa-lock"
-            :type="pwdShow ? 'text' : 'password'"
-            :error-messages="errorMessages"
-            name="password"
-            label="Password"
-            hint="At least 100 characters"
-            counter
-            clearable
-            required
-            @click:append="pwdShow = !pwdShow"
-          ></v-text-field>
+          <form>
+            <v-text-field
+              ref="username"
+              v-model="username"
+              name="username"
+              type="text"
+              prepend-icon="fas fa-user-circle"
+              hint="At least 100 characters"
+              label="Username"
+              counter
+              clearable
+              required
+              autocomplete="username"
+              :error-messages="usernameErrors"
+              @input="$v.username.$touch()"
+            ></v-text-field>
+            <v-text-field
+              ref="email"
+              v-model="email"
+              name="email"
+              type="email"
+              :error-messages="emailErrors"
+              prepend-icon="fas fa-at"
+              label="E-mail"
+              autocomplete="email"
+              counter
+              clearable
+              required
+              @input="$v.email.$touch()"
+            ></v-text-field>
+            <v-text-field
+              ref="password"
+              v-model="password"
+              :append-icon="pwdShow ? 'visibility' : 'visibility_off'"
+              prepend-icon="fas fa-lock"
+              :type="pwdShow ? 'text' : 'password'"
+              :error-messages="passwordErrors"
+              autocomplete="new-password"
+              name="password"
+              label="Password"
+              hint="At least 100 characters"
+              counter
+              clearable
+              required
+              @input="$v.password.$touch()"
+              @click:append="pwdShow = !pwdShow"
+            ></v-text-field>
+          </form>
 
           <v-spacer></v-spacer>
         </v-card-text>
-        <v-btn block color="primary" depressed large flat href="/"
+        <v-btn block color="primary" depressed large flat @click="signup"
           >SIGN UP</v-btn
         >
         <v-divider />
@@ -66,22 +72,76 @@
   </v-layout>
 </template>
 <script>
+import { validationMixin } from 'vuelidate'
+import {
+  required,
+  maxLength,
+  minLength,
+  email,
+  alphaNum
+} from 'vuelidate/lib/validators'
+
 export default {
+  mixins: [validationMixin],
   layout: 'auth',
-  data() {
-    return {
-      pwdShow: false,
-      rules: {
-        required: value => !!value || 'Required.',
-        email: value => {
-          const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-          return pattern.test(value) || 'Invalid e-mail.'
-        }
-      }
+  data: () => ({
+    pwdShow: false,
+    username: '',
+    email: '',
+    password: ''
+  }),
+  validations: {
+    username: {
+      required,
+      alphaNum,
+      minLength: minLength(6),
+      maxLength: maxLength(100)
+    },
+    email: {
+      required,
+      email
+    },
+    password: {
+      required,
+      alphaNum,
+      minLength: minLength(8)
+    }
+  },
+  computed: {
+    usernameErrors() {
+      const errors = []
+      if (!this.$v.username.$dirty) return errors
+      !this.$v.username.maxLength &&
+        errors.push('Name must be at most 100 characters long')
+      !this.$v.username.required && errors.push('Name is required.')
+      !this.$v.username.minLength &&
+        errors.push('Name must be at most 6 characters long')
+      !this.$v.username.alphaNum && errors.push('Username must be alphaNum')
+      return errors
+    },
+    emailErrors() {
+      const errors = []
+      if (!this.$v.email.$dirty) return errors
+      !this.$v.email.email && errors.push('Must be valid e-mail')
+      !this.$v.email.required && errors.push('E-mail is required')
+      return errors
+    },
+    passwordErrors() {
+      const errors = []
+      if (!this.$v.password.$dirty) return errors
+      !this.$v.password.minLength &&
+        errors.push('Name must be at most 8 characters long')
+      !this.$v.password.required && errors.push('Name is required.')
+      !this.$v.password.alphaNum && errors.push('Username must be alphaNum')
+      return errors
     }
   },
   methods: {
-    submit() {}
+    signup() {
+      this.$v.$touch()
+      if (this.$v.$invalid) return
+      console.log(111111111)
+    }
   }
 }
 </script>
