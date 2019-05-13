@@ -9,11 +9,13 @@ const config = require('../nuxt.config.js')
 config.dev = !(process.env.NODE_ENV === 'production')
 
 // bodypaser
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }));
+
 async function start() {
+  app.use(bodyParser.json())
+  app.use(bodyParser.urlencoded({ extended: true }))
 
   app.use('/api', require('./api/register'))
+  app.use('/api', require('./api/login'))
 
   // Init Nuxt.js
   const nuxt = new Nuxt(config)
