@@ -12,6 +12,7 @@ var pgp = require("pg-promise")(initOptions);
 var db = pgp(process.env.DB_CONNECT_STRING);
 
 router.post('/register', (req, res) => {
+  console.log(req.body.username)
     if(req.body.username && req.body.password && req.body.email){
       var username = req.body.username
       var password = req.body.password
@@ -30,7 +31,7 @@ router.post('/register', (req, res) => {
               return res.status(401).json({status: "NG" ,message: 'Email already exited'})
             } else {
               // cryption password
-              bcrypt.hashSync(password ,BCRYPT_SALT_ROUNDS)
+              bcrypt.hash(password ,BCRYPT_SALT_ROUNDS)
               .then(function(hashedPassword){
 
                 db.none('INSERT INTO public.users(userid, email, password) VALUES($1,$2,$3)', [username, email, hashedPassword])
@@ -40,24 +41,24 @@ router.post('/register', (req, res) => {
                 })
                 .catch(error => {
                   console.log(error)
-                  return res.status(401).json({ message: 'Insert Faild' })
+                  return res.status(401).json({status: "NG" ,message: 'Insert Faild' })
                 });
               })
             }
           })
           .catch(function(error){
             console.log(error)
-            res.status(401).json({ message: 'Bad credentials' })
+            res.status(401).json({status: "NG" , message: 'Bad credentials' })
           })
         }
         
       })
       .catch(function (error) {
         console.log(error);
-        res.status(401).json({ message: 'Bad credentials' })
+        return res.status(401).json({status: "NG" , message: 'Bad credentials' })
       });
     } else {
-      return res.status(401).json({message: 'Bad Parameters'})
+      return res.status(401).json({status: "NG" ,message: 'Bad Parameters'})
     }
     
   })

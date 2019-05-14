@@ -18,6 +18,7 @@
               autocomplete="username"
               :error-messages="usernameErrors"
               @input="$v.username.$touch()"
+              @blur="$v.username.$touch()"
             ></v-text-field>
             <v-text-field
               ref="email"
@@ -32,6 +33,7 @@
               clearable
               required
               @input="$v.email.$touch()"
+              @blur="$v.email.$touch()"
             ></v-text-field>
             <v-text-field
               ref="password"
@@ -48,9 +50,22 @@
               clearable
               required
               @input="$v.password.$touch()"
+              @blur="$v.password.$touch()"
               @click:append="pwdShow = !pwdShow"
             ></v-text-field>
           </form>
+          <v-spacer></v-spacer>
+
+          <v-alert
+            v-model="isAlert"
+            dismissible
+            color="error"
+            icon="warning"
+            outline
+            transition="scale-transition"
+          >
+            {{ message }}
+          </v-alert>
 
           <v-spacer></v-spacer>
         </v-card-text>
@@ -88,7 +103,9 @@ export default {
     pwdShow: false,
     username: '',
     email: '',
-    password: ''
+    password: '',
+    isAlert: false,
+    message: ''
   }),
   validations: {
     username: {
@@ -137,10 +154,28 @@ export default {
     }
   },
   methods: {
-    signup() {
+    async signup() {
+      this.isAlert = false
       this.$v.$touch()
       if (this.$v.$invalid) return
-      console.log(111111111)
+      await this.$axios
+        .$post('/api/register', {
+          username: this.username,
+          email: this.email,
+          password: this.password
+        })
+        .then(res => {
+          console.log(res)
+          if (res.status === 'OK') {
+            this.isAlert = false
+          }
+        })
+        .catch(err => {
+          if (err.response.data.status === 'NG') {
+            this.isAlert = true
+            this.message = err.response.data.message
+          }
+        })
     }
   }
 }
