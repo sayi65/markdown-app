@@ -159,7 +159,7 @@ export default {
       this.$v.$touch()
       if (this.$v.$invalid) return
       await this.$axios
-        .$post('/api/register', {
+        .$post('/api/auth/register', {
           username: this.username,
           email: this.email,
           password: this.password

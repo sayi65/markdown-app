@@ -14,7 +14,7 @@ const initOptions = {
 var pgp = require("pg-promise")(initOptions);
 var db = pgp(process.env.DB_CONNECT_STRING);
 
-router.post('/login', (req, res) => {
+router.post('/auth/login', (req, res) => {
   var condition
     if (req.body.username && req.body.password) {
       var username = req.body.username
@@ -48,11 +48,9 @@ router.post('/login', (req, res) => {
             }
           },privateKEY, {algorithm: 'RS256'})
 
-          data[0].token = token
-          delete data[0].password
           return res.json({
             status: "OK",
-            data: data
+            data: token
           })
         }
         // return res.json({ data: data })

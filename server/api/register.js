@@ -11,7 +11,7 @@ const initOptions = {
 var pgp = require("pg-promise")(initOptions);
 var db = pgp(process.env.DB_CONNECT_STRING);
 
-router.post('/register', (req, res) => {
+router.post('/auth/register', (req, res) => {
   console.log(req.body.username)
     if(req.body.username && req.body.password && req.body.email){
       var username = req.body.username

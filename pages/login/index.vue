@@ -8,14 +8,15 @@
             v-model="username"
             name="username"
             type="text"
-            :rules="[() => !!username || 'This field is required']"
-            :error-messages="errorMessages"
+            :error-messages="usernameErrors"
             prepend-icon="fas fa-user-circle"
             hint="At least 100 characters"
             label="Login ID"
             counter
             clearable
             required
+            @input="$v.username.$touch()"
+            @blur="$v.username.$touch()"
           ></v-text-field>
           <v-text-field
             ref="password"
@@ -23,18 +24,20 @@
             :append-icon="pwdShow ? 'visibility' : 'visibility_off'"
             prepend-icon="fas fa-lock"
             :type="pwdShow ? 'text' : 'password'"
-            :error-messages="errorMessages"
+            :error-messages="passwordErrors"
             name="password"
             label="Password"
             hint="At least 100 characters"
             counter
             clearable
             required
+            @input="$v.password.$touch()"
+            @blur="$v.password.$touch()"
             @click:append="pwdShow = !pwdShow"
           ></v-text-field>
           <v-spacer></v-spacer>
         </v-card-text>
-        <v-btn block color="primary" depressed large flat href="/"
+        <v-btn block color="primary" depressed large flat @click="submit"
           >LOG IN</v-btn
         >
         <v-divider />
@@ -52,15 +55,63 @@
   </v-layout>
 </template>
 <script>
+import { validationMixin } from 'vuelidate'
+import { required, maxLength } from 'vuelidate/lib/validators'
+
 export default {
+  mixins: [validationMixin],
   layout: 'auth',
   data() {
     return {
+      username: '',
+      password: '',
       pwdShow: false
     }
   },
+  validations: {
+    username: {
+      required,
+      maxLength: maxLength(100)
+    },
+    password: {
+      required,
+      maxLength: maxLength(100)
+    }
+  },
+  computed: {
+    usernameErrors() {
+      const errors = []
+      if (!this.$v.username.$dirty) return errors
+      !this.$v.username.maxLength &&
+        errors.push('Name must be at most 100 characters long')
+      !this.$v.username.required && errors.push('Name is required.')
+      return errors
+    },
+    passwordErrors() {
+      const errors = []
+      if (!this.$v.password.$dirty) return errors
+      !this.$v.password.required && errors.push('Name is required.')
+      !this.$v.password.maxLength &&
+        errors.push('Name must be at most 100 characters long')
+      return errors
+    }
+  },
   methods: {
-    submit() {}
+    async submit() {
+      this.$v.$touch()
+      try {
+        await this.$auth.loginWith('local', {
+          data: {
+            username: this.username,
+            password: this.password
+          }
+        })
+        this.$store.commit('SET_USER')
+        // console.log(this.$auth.getToken(this.$auth.strategy.name))
+      } catch (e) {
+        console.log(e)
+      }
+    }
   }
 }
 </script>

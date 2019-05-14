@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <div v-if="!isLogin" class="top-IsNotLogin">
+    <div v-if="!this.$store.state.auth.loggedIn" class="top-IsNotLogin">
       <v-content>
         <v-container>
           <v-layout flex-child wrap>
@@ -67,6 +67,7 @@
                       <img
                         src="https://cdn.vuetifyjs.com/images/john.jpg"
                         alt="John"
+                        size="48"
                         class="mr-2 elevation-2"
                       />
                       <v-icon dark>fas fa-angle-down</v-icon>
@@ -93,7 +94,7 @@
                       </v-list-tile-content>
                     </v-list-tile>
                     <v-divider />
-                    <v-list-tile to="/logout">
+                    <v-list-tile to="/logout" @click="logout">
                       <v-icon class="mr-2" small color="red"
                         >fas fa-sign-out-alt</v-icon
                       >
@@ -124,8 +125,7 @@ export default {
     return {
       title: 'Markdown',
       toolbarColor: 'transparent',
-      shadow: true,
-      isLogin: false
+      shadow: true
     }
   },
   methods: {
@@ -137,6 +137,9 @@ export default {
         this.toolbarColor = 'transparent'
         this.shadow = true
       }
+    },
+    logout: function() {
+      this.$auth.logout()
     }
   }
 }
