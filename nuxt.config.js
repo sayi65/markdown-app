@@ -86,15 +86,15 @@ module.exports = {
           login: { url: '/api/auth/login', method: 'post', propertyName: 'data' },
           logout: false,
           user: false
-        }
+        },
+        tokenRequired: true,
+        tokenType: 'Bearer'
       }
     },
     redirect: {
-      login: '/login',
-      logout: '/',
-      callback: '/login',
-      home: '/',
-  },
+      login: '/',
+      logout: '/'
+    },
   },
 
   /*

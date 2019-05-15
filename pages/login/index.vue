@@ -37,7 +37,7 @@
           ></v-text-field>
           <v-spacer></v-spacer>
         </v-card-text>
-        <v-btn block color="primary" depressed large flat @click="submit"
+        <v-btn block color="primary" nuxt depressed large flat @click="submit"
           >LOG IN</v-btn
         >
         <v-divider />
@@ -97,20 +97,12 @@ export default {
     }
   },
   methods: {
-    async submit() {
+    submit() {
       this.$v.$touch()
-      try {
-        await this.$auth.loginWith('local', {
-          data: {
-            username: this.username,
-            password: this.password
-          }
-        })
-        this.$store.commit('SET_USER')
-        // console.log(this.$auth.getToken(this.$auth.strategy.name))
-      } catch (e) {
-        console.log(e)
-      }
+      this.$store.dispatch('login', {
+        username: this.username,
+        password: this.password
+      })
     }
   }
 }

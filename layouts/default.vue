@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <div v-if="!this.$store.state.auth.loggedIn" class="top-IsNotLogin">
+    <div v-if="!this.$store.state.isLogin" class="top-IsNotLogin">
       <v-content>
         <v-container>
           <v-layout flex-child wrap>
@@ -25,6 +25,7 @@
               <v-btn href="/login" outline color="#26617d">ログイン</v-btn>
             </v-toolbar>
           </v-layout>
+          <v-layout row wrap>aaaaaaaaaaa </v-layout>
         </v-container>
       </v-content>
     </div>
@@ -94,7 +95,7 @@
                       </v-list-tile-content>
                     </v-list-tile>
                     <v-divider />
-                    <v-list-tile to="/logout" @click="logout">
+                    <v-list-tile nuxt to="/logout" @click="logout">
                       <v-icon class="mr-2" small color="red"
                         >fas fa-sign-out-alt</v-icon
                       >
@@ -139,7 +140,9 @@ export default {
       }
     },
     logout: function() {
-      this.$auth.logout()
+      this.$store.dispatch('logout', {
+        token: false
+      })
     }
   }
 }
