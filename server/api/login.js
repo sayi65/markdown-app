@@ -28,11 +28,11 @@ router.post('/auth/login', (req, res) => {
       .then(function (data) {
         // success;
         if(data.length === 0){
-          return res.json({status: "NG", message:"user not exited"})
+          return res.status(401).json({status: "NG", message:"user not exited"})
         } else {
           // check password
           if(!bcrypt.compareSync(password, data[0].password)){
-            return res.json({status: "NG", message:"password faild"})
+            return res.status(401).json({status: "NG", message:"password faild"})
           } 
 
           var privateKEY  = fs.readFileSync(path.join(__dirname + '/../key/private.pem'), 'utf8');
@@ -48,16 +48,19 @@ router.post('/auth/login', (req, res) => {
             }
           },privateKEY, {algorithm: 'RS256'})
 
+          // data[0].token = token
+          delete data[0].password
           return res.json({
             status: "OK",
-            data: token
+            token:token,
+            data: data[0]
           })
         }
         // return res.json({ data: data })
       })
       .catch(function (error) {
         console.log(error);
-        res.status(401).json({ message: 'Bad credentials' })
+        res.status(500).json({ message: 'Bad credentials' })
       });
     }
   })

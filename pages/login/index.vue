@@ -3,38 +3,42 @@
     <v-flex xs12 sm10 md8 lg6>
       <v-card ref="form" color="white">
         <v-card-text>
-          <v-text-field
-            ref="username"
-            v-model="username"
-            name="username"
-            type="text"
-            :error-messages="usernameErrors"
-            prepend-icon="fas fa-user-circle"
-            hint="At least 100 characters"
-            label="Login ID"
-            counter
-            clearable
-            required
-            @input="$v.username.$touch()"
-            @blur="$v.username.$touch()"
-          ></v-text-field>
-          <v-text-field
-            ref="password"
-            v-model="password"
-            :append-icon="pwdShow ? 'visibility' : 'visibility_off'"
-            prepend-icon="fas fa-lock"
-            :type="pwdShow ? 'text' : 'password'"
-            :error-messages="passwordErrors"
-            name="password"
-            label="Password"
-            hint="At least 100 characters"
-            counter
-            clearable
-            required
-            @input="$v.password.$touch()"
-            @blur="$v.password.$touch()"
-            @click:append="pwdShow = !pwdShow"
-          ></v-text-field>
+          <form>
+            <v-text-field
+              ref="username"
+              v-model="username"
+              name="username"
+              type="text"
+              :error-messages="usernameErrors"
+              prepend-icon="fas fa-user-circle"
+              hint="At least 100 characters"
+              label="Login ID"
+              counter
+              clearable
+              autocomplete="username"
+              required
+              @input="$v.username.$touch()"
+              @blur="$v.username.$touch()"
+            ></v-text-field>
+            <v-text-field
+              ref="password"
+              v-model="password"
+              :append-icon="pwdShow ? 'visibility' : 'visibility_off'"
+              prepend-icon="fas fa-lock"
+              :type="pwdShow ? 'text' : 'password'"
+              :error-messages="passwordErrors"
+              name="password"
+              label="Password"
+              hint="At least 100 characters"
+              counter
+              clearable
+              autocomplete="new-password"
+              required
+              @input="$v.password.$touch()"
+              @blur="$v.password.$touch()"
+              @click:append="pwdShow = !pwdShow"
+            ></v-text-field>
+          </form>
           <v-spacer></v-spacer>
         </v-card-text>
         <v-btn block color="primary" nuxt depressed large flat @click="submit"
@@ -56,7 +60,7 @@
 </template>
 <script>
 import { validationMixin } from 'vuelidate'
-import { required, maxLength } from 'vuelidate/lib/validators'
+import { required, maxLength, alphaNum } from 'vuelidate/lib/validators'
 
 export default {
   mixins: [validationMixin],
@@ -71,6 +75,7 @@ export default {
   validations: {
     username: {
       required,
+      alphaNum,
       maxLength: maxLength(100)
     },
     password: {
@@ -85,6 +90,7 @@ export default {
       !this.$v.username.maxLength &&
         errors.push('Name must be at most 100 characters long')
       !this.$v.username.required && errors.push('Name is required.')
+      !this.$v.username.alphaNum && errors.push('Username must be alphaNum')
       return errors
     },
     passwordErrors() {
@@ -97,12 +103,36 @@ export default {
     }
   },
   methods: {
-    submit() {
+    async submit() {
       this.$v.$touch()
-      this.$store.dispatch('login', {
-        username: this.username,
-        password: this.password
-      })
+      if (this.$v.$invalid) return
+
+      // await this.$auth
+      //   .login('local', {
+      //     data: {
+      //       username: this.username,
+      //       password: this.password
+      //     }
+      //   })
+      //   .then(response => {
+      //     console.log(11111111111)
+      //     console.log(response)
+      //   })
+
+      await this.$store
+        .dispatch('login', {
+          username: this.username,
+          password: this.password
+        })
+        .then(response => {
+          console.log(111111)
+          console.log(response)
+          console.log(this.$store.state.auth.user)
+        })
+        .catch(response => {
+          console.log(111111)
+          console.log(response)
+        })
     }
   }
 }

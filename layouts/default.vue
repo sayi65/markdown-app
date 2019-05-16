@@ -1,6 +1,6 @@
 <template>
   <v-app id="app">
-    <div v-if="!this.$store.state.isLogin" class="top-IsNotLogin">
+    <div v-if="!this.$auth.loggedIn" class="top-IsNotLogin">
       <v-content>
         <v-container>
           <v-layout flex-child wrap>
@@ -19,10 +19,10 @@
                 </nuxt-link>
               </v-toolbar-title>
               <v-spacer />
-              <v-btn href="/signup" outline color="#26617d"
+              <v-btn to="/signup" nuxt outline color="#26617d"
                 >ユーザー登録
               </v-btn>
-              <v-btn href="/login" outline color="#26617d">ログイン</v-btn>
+              <v-btn to="/login" nuxt outline color="#26617d">ログイン</v-btn>
             </v-toolbar>
           </v-layout>
           <v-layout row wrap>aaaaaaaaaaa </v-layout>

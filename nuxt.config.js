@@ -60,7 +60,7 @@ module.exports = {
     '@nuxtjs/auth',
     // '@nuxtjs/proxy',
     '@nuxtjs/pwa',
-    '@nuxtjs/dotenv',
+    '@nuxtjs/dotenv'
   ],
   /*
    ** Axios module configuration
@@ -80,12 +80,13 @@ module.exports = {
   },
 
   auth: {
+    localStorage: false,
     strategies: {
       local: {
         endpoints: {
-          login: { url: '/api/auth/login', method: 'post', propertyName: 'data' },
+          login: { url: '/api/auth/login', method: 'post', propertyName: 'token' },
           logout: false,
-          user: false
+          user:false
         },
         tokenRequired: true,
         tokenType: 'Bearer'
