@@ -60,7 +60,8 @@ module.exports = {
     '@nuxtjs/auth',
     // '@nuxtjs/proxy',
     '@nuxtjs/pwa',
-    '@nuxtjs/dotenv'
+    '@nuxtjs/dotenv',
+    '@nuxtjs/apollo'
   ],
   /*
    ** Axios module configuration
@@ -69,6 +70,12 @@ module.exports = {
     // See https://github.com/nuxt-community/axios-module#options
     baseURL: 'http://localhost:3000',
     proxy: true
+  },
+
+  apollo: {
+    clientConfigs: {
+      default: '~/plugins/apollo.js',
+    }
   },
 
   proxy:{

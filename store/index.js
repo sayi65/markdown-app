@@ -1,37 +1,43 @@
+import getUser from '~/apollo/queries/getUser'
+
 export const state = () => ({
   authToken: null,
-  isLogin: false
+  isLogin: false,
+  authUser: null
 })
 
 export const mutations = {
-  SET_USER: function(state, token) {
-    state.authToken = token
-    if (token !== false) {
-      state.isLogin = true
+  SET_USER: function(state, user) {
+    state.authUser = user
+    console.log(user)
+    if (user === null) {
+      state.isLogin = false
     } else {
-      state.isLogin = token
+      state.isLogin = true
     }
   }
 }
 
 export const actions = {
   // nuxtServerInit is called by Nuxt.js before server-rendering every page
-  nuxtServerInit({ commit }, { req }) {
-    // console.log(this.$auth.token !== undefined)
-    // console.log(this.$auth.getToken(this.$auth.strategy.name) === false)
-    // if (
-    //   this.$auth.getToken(this.$auth.strategy.name) !== false &&
-    //   this.$auth.token !== undefined
-    // ) {
-    //   // this.$auth.setUser({ name: 'test', email: 'test@test.com' })
-    //   commit('SET_USER', this.$auth.getToken(this.$auth.strategy.name))
-    // } else {
-    //   commit('SET_USER', false)
-    // }
-    // console.log(Boolean(this.$auth.user))
-    // this.$auth.reset()
-    console.log(this.$auth.user)
-    // console.log(Boolean(this.$auth.user))
+  async nuxtServerInit({ commit }, { req }) {
+    if (this.$auth.getToken(this.$auth.strategy.name) === false) {
+      commit('SET_USER', null)
+    } else {
+      const client = this.app.apolloProvider.defaultClient
+      const response = await client
+        .query({
+          query: getUser,
+          context: {
+            headers: {}
+          }
+        })
+        .then(({ data }) => console.log(data))
+
+      console.log(response)
+
+      commit('SET_USER', this.$auth.getToken(this.$auth.strategy.name))
+    }
   },
   login({ commit, state }, { username, password }) {
     return new Promise((resolve, reject) => {
@@ -51,25 +57,14 @@ export const actions = {
                 }
               })
             }
-
-            this.$auth.setUser(response.data)
-            console.log(this.$auth.user)
+            commit('SET_USER', response.data)
+            console.log(response.data)
+            resolve('OK')
           })
           .catch(err => {
-            console.log(333)
-            console.log(err.response.data.message)
             reject(err.response.data.message)
           })
-
-        // this.$auth.setUser({ email: 'test@test.com', username: 'test' })
-
-        // if (this.$auth.token !== undefined) {
-        //   commit('SET_USER', this.$auth.getToken(this.$auth.strategy.name))
-        // } else {
-        //   commit('SET_USER', false)
-        // }
       } catch (error) {
-        console.log(error)
         if (error.response && error.response.status === 401) {
           throw new Error('Bad credentials')
         }
@@ -79,7 +74,6 @@ export const actions = {
   },
   async logout({ commit, state }, { token }) {
     await this.$auth.logout()
-    this.$auth.reset()
-    // commit('SET_USER', false)
+    commit('SET_USER', null)
   }
 }

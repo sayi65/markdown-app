@@ -1,0 +1,12 @@
+{
+  users {
+    email
+    id
+    loginid
+    user_details {
+      avatarpath
+      userid
+      username
+    }
+  }
+}

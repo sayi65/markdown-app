@@ -22,9 +22,9 @@ router.post('/auth/login', (req, res) => {
       if(/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(username)){
         condition = "email"
       } else {
-        condition = "userid"
+        condition = "loginid"
       }
-      db.any('select * from public.users where '+ condition + '=$1', username)
+      db.any('select * from public.users LEFT JOIN public.user_details ON users.id = user_details.userid where users.'+ condition + '=$1', username)
       .then(function (data) {
         // success;
         if(data.length === 0){
