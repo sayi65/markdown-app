@@ -1,0 +1,42 @@
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hasura
+    hasuraService: custom
+  name: hasura
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hasura
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: hasura
+    spec:
+      containers:
+      - image: hasura/graphql-engine:v1.0.0-beta.1
+        imagePullPolicy: IfNotPresent
+        name: hasura
+        env:
+        - name: HASURA_GRAPHQL_DATABASE_URL
+          value: postgres://postgres:postgres@192.168.56.1:5432/haruse
+        - name: HASURA_GRAPHQL_ENABLE_CONSOLE
+          value: "true"
+        # - name: HASURA_GRAPHQL_AUTH_HOOK
+        #   value: "https://glaze-airmail.glitch.me/simple/webhook"
+        # - name: HASURA_GRAPHQL_AUTH_HOOK_MODE
+        #   value: "GET"
+        - name: HASURA_GRAPHQL_ADMIN_SECRET
+          value: "hello"
+        # - name: HASURA_GRAPHQL_ENABLE_ALLOWLIST
+        #  value: "true"
+        - name: HASURA_GRAPHQL_JWT_SECRET
+          value: '{"type":"RS256", "key": "-----BEGIN PUBLIC KEY-----\nMFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBAKiwJV01vhgFm+zw+f/xFWxVxmnho70t\n6kuzvqiKouvF3h31rmnXmeREh19PXT4mJ5Yt2pO9WNpboCJf4dxy4XcCAwEAAQ==\n-----END PUBLIC KEY-----"}'
+        ports:
+        - containerPort: 8080
+          protocol: TCP
