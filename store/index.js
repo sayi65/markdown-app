@@ -1,4 +1,4 @@
-import getUser from '~/apollo/queries/getUser'
+// import getUser from '~/apollo/queries/getUser'
 
 export const state = () => ({
   authToken: null,
@@ -8,8 +8,9 @@ export const state = () => ({
 
 export const mutations = {
   SET_USER: function(state, user) {
-    state.authUser = user
     console.log(user)
+    state.authUser = user
+
     if (user === null) {
       state.isLogin = false
     } else {
@@ -20,23 +21,44 @@ export const mutations = {
 
 export const actions = {
   // nuxtServerInit is called by Nuxt.js before server-rendering every page
-  async nuxtServerInit({ commit }, { req }) {
-    if (this.$auth.getToken(this.$auth.strategy.name) === false) {
-      commit('SET_USER', null)
+  async nuxtServerInit(store, context) {
+    console.log(this.$auth.getToken(this.$auth.strategy.name))
+    if (
+      this.$auth.getToken(this.$auth.strategy.name) === false ||
+      this.$auth.getToken(this.$auth.strategy.name) === undefined
+    ) {
+      store.commit('SET_USER', null)
     } else {
-      const client = this.app.apolloProvider.defaultClient
-      const response = await client
-        .query({
-          query: getUser,
-          context: {
-            headers: {}
-          }
-        })
-        .then(({ data }) => console.log(data))
-
-      console.log(response)
-
-      commit('SET_USER', this.$auth.getToken(this.$auth.strategy.name))
+      await this.$axios({
+        url: 'http://localhost/v1/graphql',
+        headers: {
+          Authorization: this.$auth.getToken(this.$auth.strategy.name),
+          'x-hasura-role': 'login'
+        },
+        method: 'post',
+        data: {
+          query: `{
+            users {
+              email
+              id
+              loginid
+              user_details {
+                avatarpath
+                userid
+                username
+              }
+            }
+          }`
+        }
+      }).then(result => {
+        // console.log(result)
+        result.data.data.users[0].avatarpath =
+          result.data.data.users[0].user_details[0].avatarpath
+        result.data.data.users[0].username =
+          result.data.data.users[0].user_details[0].username
+        delete result.data.data.users[0].user_details
+        store.commit('SET_USER', result.data.data.users[0])
+      })
     }
   },
   login({ commit, state }, { username, password }) {
