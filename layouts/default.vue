@@ -64,18 +64,30 @@
               <v-toolbar-items>
                 <v-menu class="pr-4" offset-y>
                   <v-list slot="activator" class="transparent">
-                    <v-avatar>
+                    <v-avatar width="48">
                       <img
-                        src="https://cdn.vuetifyjs.com/images/john.jpg"
-                        alt="John"
-                        size="48"
+                        v-if="$store.state.authUser.avatarpath === null"
+                        src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153?s=48"
+                        :alt="$store.state.authUser.username"
                         class="mr-2 elevation-2"
                       />
+                      <img
+                        v-else
+                        src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153?s=48"
+                        alt="John"
+                        class="mr-2 elevation-2"
+                      />
+
                       <v-icon dark>fas fa-angle-down</v-icon>
                     </v-avatar>
                   </v-list>
                   <v-list>
-                    <v-list-tile to="/_id">
+                    <v-list-tile
+                      :to="{
+                        name: 'id',
+                        params: { id: $store.state.authUser.loginid }
+                      }"
+                    >
                       <v-icon small class="mr-2" color="red"
                         >fas fa-user-cog</v-icon
                       >

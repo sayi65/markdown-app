@@ -64,7 +64,7 @@
               color="red"
               disabled
               single-line
-              value="sayi65"
+              :value="$store.state.authUser.loginid"
             ></v-text-field>
           </v-flex>
           <v-flex text-xs-left>
