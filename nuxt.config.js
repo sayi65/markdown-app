@@ -77,8 +77,10 @@ module.exports = {
       // default: '@/plugins/apollo.js',
       default: {
         httpEndpoint: 'http://localhost/v1/graphql',
+        wsEndpoint: 'ws://localhost/v1/graphql',
+        websocketsOnly: false, 
       }
-    }
+    },
   },
 
   proxy:{

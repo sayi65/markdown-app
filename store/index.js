@@ -1,4 +1,4 @@
-import getUser from '~/apollo/queries/getUser'
+import isLoginUser from '~/apollo/queries/isLoginUser.gql'
 
 export const state = () => ({
   authToken: null,
@@ -31,7 +31,7 @@ export const actions = {
       const client = context.app.apolloProvider.defaultClient
       await client
         .query({
-          query: getUser,
+          query: isLoginUser,
           context: {
             headers: {
               'X-Hasura-Role': 'login',
@@ -43,6 +43,7 @@ export const actions = {
           data.users[0].avatarpath = data.users[0].user_details[0].avatarpath
           data.users[0].username = data.users[0].user_details[0].username
           delete data.users[0].user_details
+          console.log(data.users[0])
           store.commit('SET_USER', data.users[0])
         })
     }

@@ -1,6 +1,6 @@
 <template>
   <v-layout align-start justify-center row>
-    <v-flex xs12 sm10 md8 lg6>
+    <v-flex xs12 sm8 md6 lg4>
       <v-card ref="form" color="white">
         <v-card-text>
           <form>

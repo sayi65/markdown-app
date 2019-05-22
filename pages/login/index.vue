@@ -1,6 +1,6 @@
 <template>
   <v-layout align-start justify-center row>
-    <v-flex xs12 sm10 md8 lg6>
+    <v-flex xs12 sm8 md6 lg4>
       <v-card ref="form" color="white">
         <v-card-text>
           <form>
@@ -106,18 +106,6 @@ export default {
     async submit() {
       this.$v.$touch()
       if (this.$v.$invalid) return
-
-      // await this.$auth
-      //   .login('local', {
-      //     data: {
-      //       username: this.username,
-      //       password: this.password
-      //     }
-      //   })
-      //   .then(response => {
-      //     console.log(11111111111)
-      //     console.log(response)
-      //   })
 
       await this.$store
         .dispatch('login', {

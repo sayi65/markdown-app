@@ -1,5 +1,5 @@
-{
-  users {
+query($userid: String!){
+  users(where: {loginid: {_eq: $userid}}) {
     email
     id
     loginid
