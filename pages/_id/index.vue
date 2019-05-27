@@ -99,7 +99,6 @@ export default {
   },
   async asyncData(context) {
     const client = context.app.apolloProvider.defaultClient
-    console.log(11111)
     await client
       .query({
         query: getUser,

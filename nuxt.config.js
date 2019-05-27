@@ -61,7 +61,8 @@ module.exports = {
     // '@nuxtjs/proxy',
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
-    '@nuxtjs/apollo'
+    '@nuxtjs/apollo',
+    '@tui-nuxt/editor'
   ],
   /*
    ** Axios module configuration
@@ -108,6 +109,12 @@ module.exports = {
       login: '/',
       logout: '/'
     },
+  },
+
+  tui: {
+    editor: {
+      exts: ['colorSyntax','scrollSync', 'chart', 'table', 'uml'],
+    }
   },
 
   /*
