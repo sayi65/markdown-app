@@ -40,9 +40,13 @@ export const actions = {
           }
         })
         .then(({ data }) => {
-          data.users[0].avatarpath = data.users[0].user_details[0].avatarpath
-          data.users[0].username = data.users[0].user_details[0].username
-          delete data.users[0].user_details
+          console.log(data.users[0].users_details[0])
+          if (typeof data.users[0].users_details[0] !== 'undefined') {
+            data.users[0].avatarpath = data.users[0].users_details[0].avatarpath
+            data.users[0].username = data.users[0].users_details[0].username
+            delete data.users[0].users_details
+          }
+
           console.log(data.users[0])
           store.commit('SET_USER', data.users[0])
         })

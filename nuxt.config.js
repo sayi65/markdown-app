@@ -77,8 +77,8 @@ module.exports = {
     clientConfigs: {
       // default: '@/plugins/apollo.js',
       default: {
-        httpEndpoint: 'http://localhost/v1/graphql',
-        wsEndpoint: 'ws://localhost/v1/graphql',
+        httpEndpoint: 'http://13.236.93.74:32273/v1/graphql',
+        wsEndpoint: 'ws://13.236.93.74:32273/v1/graphql',
         websocketsOnly: false, 
       }
     },

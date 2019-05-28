@@ -168,6 +168,7 @@ export default {
           console.log(res)
           if (res.status === 'OK') {
             this.isAlert = false
+            this.$router.push({ path: `/login` })
           }
         })
         .catch(err => {

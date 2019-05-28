@@ -12,20 +12,21 @@ var pgp = require("pg-promise")(initOptions);
 var db = pgp(process.env.DB_CONNECT_STRING);
 
 router.post('/auth/register', (req, res) => {
-  console.log(req.body.username)
     if(req.body.username && req.body.password && req.body.email){
       var username = req.body.username
       var password = req.body.password
       var email = req.body.email
-      db.any('select * from public.users where userId=$1', username)
+      db.any('select * from public.users where loginid=$1', username)
       .then(function (data) {
         // success;
+        console.log(data)
         if(data.length === 1){
           //when data is exited - userid
           return res.status(401).json({status: "NG" ,message: 'ID already exited'})
         } else {
           db.any('select * from public.users where email=$1', email)
           .then(function(data){
+            console.log(data)
             if(data.length === 1){
               //when data is exited - email
               return res.status(401).json({status: "NG" ,message: 'Email already exited'})
@@ -34,7 +35,7 @@ router.post('/auth/register', (req, res) => {
               bcrypt.hash(password ,BCRYPT_SALT_ROUNDS)
               .then(function(hashedPassword){
 
-                db.none('INSERT INTO public.users(userid, email, password) VALUES($1,$2,$3)', [username, email, hashedPassword])
+                db.none('INSERT INTO public.users(loginid, email, password) VALUES($1,$2,$3)', [username, email, hashedPassword])
                 .then(data => {
                   res.json({status:"OK"})
                   return null

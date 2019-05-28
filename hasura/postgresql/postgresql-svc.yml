@@ -5,8 +5,19 @@ metadata:
   labels:
     app: postgresql
 spec:
-  type: ClusterIP
+  type: LoadBalancer
+  externalIPs:
+    - 13.236.93.74
   ports:
-    - port: 5432
+    - protocol: TCP
+      port: 5432
+      targetPort: 5432
   selector:
     app: postgresql
+#### ClusterIP
+# spec:
+#   type: ClusterIP
+#   ports:
+#     - port: 5432
+#   selector:
+#     app: postgresql

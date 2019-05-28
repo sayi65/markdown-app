@@ -23,6 +23,8 @@ spec:
         imagePullPolicy: IfNotPresent
         name: hasura
         env:
+        - name: TZ
+          value: Asia/Tokyo
         - name: HASURA_GRAPHQL_DATABASE_URL
           value: postgres://postgres:postgres@postgresql:5432/hasura
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE

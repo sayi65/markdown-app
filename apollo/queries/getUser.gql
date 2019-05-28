@@ -3,7 +3,7 @@ query($userid: String!){
     email
     id
     loginid
-    user_details {
+    users_details {
       avatarpath
       userid
       username

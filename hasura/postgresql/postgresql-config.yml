@@ -8,3 +8,4 @@ data:
   POSTGRES_DB: hasura
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
+  TZ: Asia/Tokyo
