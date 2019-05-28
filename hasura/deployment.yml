@@ -24,7 +24,7 @@ spec:
         name: hasura
         env:
         - name: HASURA_GRAPHQL_DATABASE_URL
-          value: postgres://postgres:postgres@192.168.56.1:5432/haruse
+          value: postgres://postgres:postgres@postgresql:5432/hasura
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
           value: "true"
         # - name: HASURA_GRAPHQL_AUTH_HOOK
