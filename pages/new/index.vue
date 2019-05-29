@@ -1,13 +1,14 @@
 <template>
   <v-content grid-list-lg text-xs-left>
     <v-layout justify-center column>
-      <v-flex class="px-4 pb-2">
+      <v-flex class="px-4">
         <v-text-field
           ref="tittle"
           v-model="tittle"
           name="tittle"
           type="text"
           label="Tittle"
+          color="green"
           counter
           single-line
           outline
@@ -17,15 +18,17 @@
       </v-flex>
       <v-layout v-resize="onResize" row wrap justify-center>
         <v-flex class="px-4">
-          <TuiEditor
-            v-model="editorText"
-            mode="markdown"
-            preview-style="vertical"
-            :height="`${editorResizeHeight}` + 'px'"
-            :options="editorOptions"
-            :visible="editorVisible"
-            class="editor"
-          />
+          <no-ssr placeholder="Loading...">
+            <editor
+              v-model="editorText"
+              mode="markdown"
+              preview-style="vertical"
+              :height="`${editorResizeHeight}` + 'px'"
+              :options="editorOptions"
+              :visible="editorVisible"
+              class="editor"
+            />
+          </no-ssr>
         </v-flex>
 
         <!-- Markdown Viewer
@@ -35,7 +38,7 @@
       <v-layout justify-end column>
         <v-spacer></v-spacer>
         <v-flex class="px-3">
-          <v-btn color="success" class="btn-positon">Success</v-btn>
+          <v-btn color="success" class="btn-positon">Save</v-btn>
         </v-flex>
       </v-layout>
     </v-layout>
@@ -43,20 +46,18 @@
 </template>
 
 <script>
-import 'codemirror/lib/codemirror.css'
-import 'tui-editor/dist/tui-editor-contents.css'
-import 'tui-chart/dist/tui-chart.css'
-import 'tui-color-picker/dist/tui-color-picker.min.css'
-
 export default {
   data() {
     return {
+      tittle: null,
       editorResizeHeight: 400,
       editorText: '# This is Viewer.\n Hello World.',
       editorVisible: true,
       editorOptions: {
-        useCommandShortcut: true,
-        usageStatistics: true,
+        hideModeSwitch: true,
+        // useCommandShortcut: true,
+        usageStatistics: false,
+        // usageStatistics: true
         exts: [
           'scrollSync',
           'colorSyntax',
@@ -65,10 +66,10 @@ export default {
           'table',
           {
             name: 'chart',
-            minWidth: 400,
-            minHeight: 200,
-            maxWidth: 600,
-            maxHeight: 300
+            minWidth: 500,
+            minHeight: 300,
+            maxWidth: 800,
+            maxHeight: 800
           }
         ]
       }
@@ -87,6 +88,7 @@ export default {
 <style>
 code {
   box-shadow: none !important;
+  background-color: #fff0 !important;
 }
 .te-preview {
   background-color: white;
@@ -96,5 +98,14 @@ code {
 }
 .btn-positon {
   float: right;
+}
+
+.tui-editor-contents pre {
+  color: #efefef !important;
+  background: #414a5d !important;
+}
+
+* {
+  background-repeat: inherit;
 }
 </style>

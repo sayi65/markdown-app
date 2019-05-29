@@ -45,10 +45,9 @@ module.exports = {
     '@/plugins/vuetify',
     '@/plugins/scroll',
     '@/plugins/fileupload',
-    { src: '@/plugins/vuelidate', ssr: false },
-    {
-    src:'@/plugins/scrollto', ssr:false
-    }
+    { src:'@/plugins/vuelidate', ssr: false },
+    { src:'@/plugins/tui-editor', ssr: false},
+    { src:'@/plugins/scrollto', ssr:false }
   ],
 
   /*
@@ -62,7 +61,6 @@ module.exports = {
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     '@nuxtjs/apollo',
-    '@tui-nuxt/editor'
   ],
   /*
    ** Axios module configuration
@@ -122,6 +120,7 @@ module.exports = {
    */
   build: {
     transpile: ['vuetify/lib'],
+    vendor: ['@toast-ui/vue-editor'],
     plugins: [new VuetifyLoaderPlugin()],
     loaders: {
       stylus: {
