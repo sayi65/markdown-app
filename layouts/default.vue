@@ -67,12 +67,14 @@
                     <v-avatar width="48">
                       <img
                         v-if="$store.state.authUser.avatarpath === null"
+                        lazy-src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153?s=48"
                         src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153?s=48"
                         :alt="$store.state.authUser.username"
                         class="mr-2 elevation-2"
                       />
                       <img
                         v-else
+                        lazy-src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153?s=48"
                         src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153?s=48"
                         alt="John"
                         class="mr-2 elevation-2"
