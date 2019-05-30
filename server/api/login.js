@@ -41,7 +41,7 @@ router.post('/auth/login', (req, res) => {
           var token = jwt.sign({
             username: data[0].userid,
             expiresIn: '24h',
-            iat: Math.floor(Date.now() / 1000) - 60,
+            iat: Math.floor(Date.now() / 1000) - 120,
             email: data[0].email,
             "https://hasura.io/jwt/claims": {
               "x-hasura-allowed-roles": ["login","anonymous"],

@@ -3,10 +3,11 @@ query($userid: String!){
     email
     id
     loginid
-    users_details {
-      avatarpath
-      userid
-      username
-    }
+  }
+  users_details(where: {users: {loginid: {_eq: $userid}}}) {
+    avatarpath
+    username
+    userid
+    blob
   }
 }

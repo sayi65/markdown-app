@@ -84,8 +84,6 @@
 import MypageNav from '~/components/MypageNav.vue'
 import ProfileCard from '~/components/ProfileCard.vue'
 
-import getUser from '~/apollo/queries/getUser.gql'
-
 export default {
   layout: 'default',
   components: {
@@ -97,26 +95,17 @@ export default {
       userdata: null
     }
   },
-  async asyncData(context) {
-    const client = context.app.apolloProvider.defaultClient
-    await client
-      .query({
-        query: getUser,
-        variables: {
-          userid: context.params.id
-        },
-        context: {
-          headers: {
-            'X-Hasura-Role': 'anonymous',
-            Authorization: context.app.$auth.getToken(
-              context.app.$auth.strategy.name
-            )
-          }
-        }
+  async asyncData({ store, redirect, params }) {
+    await store
+      .dispatch('userinfo/get_user_info', {
+        userid: params.id
       })
-      .then(({ data }) => {
-        console.log(data.users[0])
-        return { userdata: data.users[0] }
+      .then(response => {
+        console.log(111111)
+        console.log(response)
+      })
+      .catch(response => {
+        redirect('/errors/404')
       })
   },
   methods: {}

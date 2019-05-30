@@ -66,19 +66,19 @@ export default {
           icon: 'far fa-clipboard',
           iconClass: 'grey lighten-1 white--text',
           title: 'Item',
-          link: '/_id'
+          link: '/' + this.$store.state.userinfo.userdata.loginid
         },
         {
           icon: 'far fa-paper-plane',
           iconClass: 'grey lighten-1 white--text',
           title: 'Following',
-          link: '/_id/following'
+          link: '/' + this.$store.state.userinfo.userdata.loginid + '/following'
         },
         {
           icon: 'far fa-grin-alt',
           iconClass: 'grey lighten-1 white--text',
           title: 'Followers',
-          link: '/_id/followers'
+          link: '/' + this.$store.state.userinfo.userdata.loginid + '/followers'
         }
       ]
     }

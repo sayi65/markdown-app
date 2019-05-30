@@ -1,20 +1,29 @@
 <template>
-  <v-layout align-start justify-start column fill-height>
+  <v-layout align-start justify-centercolumn fill-height>
     <v-flex>
       <v-card class="mx-2">
         <v-img
-          src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-        ></v-img>
+          v-if="$store.state.userinfo.userdetail.avatarpath === null"
+          lazy-src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153&size=400"
+          src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153&size=400"
+          :alt="$store.state.authUser.username"
+          class="mr-2 elevation-2"
+        />
+        <v-img
+          v-else
+          :lazy-src="$store.state.userinfo.userdetail.avatarpath"
+          :src="$store.state.userinfo.userdetail.avatarpath"
+          alt="John"
+          class="mr-2 elevation-2"
+        />
+
         <v-divider />
         <div>
-          <h3 class="headline mb-0">@Kangaroo</h3>
+          <h3 class="headline mb-0">
+            @{{ $store.state.userinfo.userdata.loginid }}
+          </h3>
         </div>
-        <v-card-text
-          >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-          aliquip ex ea commodo consequat.</v-card-text
-        >
+        <v-card-text>{{ $store.state.userinfo.userdetail.blob }}</v-card-text>
         <v-divider />
         <v-btn nuxt href="/setting/profile" block flat>Change Profile</v-btn>
         <v-divider />
