@@ -9,5 +9,11 @@ query($userid: String!){
     username
     userid
     blob
+    blogurl
+    company
+    location
+    facebook
+    linkedin
+    github
   }
 }
