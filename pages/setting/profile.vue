@@ -27,7 +27,6 @@
               box
               clearable
               color="green"
-              prefix="http(s)://"
               maxlength="200"
             ></v-text-field>
           </v-flex>
