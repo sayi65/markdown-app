@@ -11,22 +11,20 @@ const initOptions = {
 var pgp = require("pg-promise")(initOptions);
 var db = pgp(process.env.DB_CONNECT_STRING);
 
-router.post('/auth/register', (req, res) => {
+router.post('/auth/register', async (req, res) => {
     if(req.body.username && req.body.password && req.body.email){
       var username = req.body.username
       var password = req.body.password
       var email = req.body.email
-      db.any('select * from public.users where loginid=$1', username)
+      await db.any('select * from public.users where loginid=$1', username)
       .then(function (data) {
         // success;
-        console.log(data)
         if(data.length === 1){
           //when data is exited - userid
           return res.status(401).json({status: "NG" ,message: 'ID already exited'})
         } else {
           db.any('select * from public.users where email=$1', email)
           .then(function(data){
-            console.log(data)
             if(data.length === 1){
               //when data is exited - email
               return res.status(401).json({status: "NG" ,message: 'Email already exited'})
@@ -34,11 +32,16 @@ router.post('/auth/register', (req, res) => {
               // cryption password
               bcrypt.hash(password ,BCRYPT_SALT_ROUNDS)
               .then(function(hashedPassword){
-
-                db.none('INSERT INTO public.users(loginid, email, password) VALUES($1,$2,$3)', [username, email, hashedPassword])
+                // insert to user table
+                db.query('INSERT INTO public.users(loginid, email, password) VALUES($1,$2,$3) RETURNING id;', [username, email, hashedPassword])
                 .then(data => {
-                  res.json({status:"OK"})
-                  return null
+                  // insert to users_details table
+                  db.query('INSERT INTO public.users_details(userid) VALUES($1) RETURNING uuid;', [data[0].id])
+                  .then(data => {
+                    // response data
+                    res.json({status:"OK"})
+                    return null
+                  })
                 })
                 .catch(error => {
                   console.log(error)
