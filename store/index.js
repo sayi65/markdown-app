@@ -68,7 +68,6 @@ export const actions = {
               })
             }
             commit('SET_USER', response.data)
-            console.log(response.data)
             resolve('OK')
           })
           .catch(err => {

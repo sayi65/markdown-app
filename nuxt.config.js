@@ -4,7 +4,7 @@ require('dotenv').config()
 
 module.exports = {
   mode: 'universal',
-
+  modern: false,
   /*
    ** Headers of the page
    */
@@ -57,7 +57,7 @@ module.exports = {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/auth',
-    // '@nuxtjs/proxy',
+    '@nuxtjs/proxy',
     '@nuxtjs/pwa',
     '@nuxtjs/dotenv',
     '@nuxtjs/apollo',
@@ -107,12 +107,6 @@ module.exports = {
       login: '/',
       logout: '/'
     },
-  },
-
-  tui: {
-    editor: {
-      exts: ['colorSyntax','scrollSync', 'chart', 'table', 'uml'],
-    }
   },
 
   /*

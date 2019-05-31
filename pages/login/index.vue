@@ -114,8 +114,6 @@ export default {
         })
         .then(response => {
           console.log(111111)
-          console.log(response)
-          console.log(this.$auth.user)
         })
         .catch(response => {
           console.log(22222222)

@@ -26,7 +26,6 @@ router.post('/auth/login', (req, res) => {
       }
       db.any('select * from public.users LEFT JOIN public.users_details ON users.id = users_details.userid where users.'+ condition + '=$1', username)
       .then(function (data) {
-        console.log(data)
         // success;
         if(data.length === 0){
           return res.status(401).json({status: "NG", message:"user not exited"})
