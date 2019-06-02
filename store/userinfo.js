@@ -1,4 +1,5 @@
 import getUser from '~/apollo/queries/getUser.gql'
+import updateUser from '~/apollo/queries/updateUser.gql'
 
 export const state = () => ({
   userdata: {},
@@ -29,12 +30,37 @@ export const actions = {
         }
       })
       .then(({ data }) => {
-        console.log(data.users[0])
         if (typeof data.users[0] !== 'undefined') {
           commit('GET_USER_INFO', data)
         } else {
           throw new Error('Bad credentials')
         }
+      })
+  },
+  async set_user_info({ commit }, user) {
+    console.log(user.data)
+    const client = this.app.apolloProvider.defaultClient
+    await client
+      .mutate({
+        mutation: updateUser,
+        variables: {
+          userid: user.userid,
+          updatedata: user.data
+        },
+        context: {
+          headers: {
+            'X-Hasura-Role': 'login',
+            Authorization: this.$auth.getToken(this.$auth.strategy.name)
+          }
+        }
+      })
+      .then(({ data }) => {
+        console.log(data)
+        // if (typeof data.users[0] !== 'undefined') {
+        //   commit('GET_USER_INFO', data)
+        // } else {
+        //   throw new Error('Bad credentials')
+        // }
       })
   }
 }

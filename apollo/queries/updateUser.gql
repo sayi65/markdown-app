@@ -1,0 +1,31 @@
+
+
+mutation($userid: String!, $updatedata: users_details_set_input){
+    update_users_datails(where:{users:{loginid:{_eq:$userid}}},
+        _set: $updatedata
+        # {
+        #     updatedata = $blob,$image... 
+        #     blob:$blob,
+        #     avatarpath:$image
+        #     blogurl:$blogurl
+        #     company:$company
+        #     facebook:$facebook
+        #     linkedin:$linkedin
+        #     location:$location
+        #     username:$username
+        # }
+    ){
+        returning {
+            userid
+            username
+            blob
+            avatarpath
+            blogurl
+            company
+            facebook
+            linkedin
+            location
+            username
+        }
+    }
+}
