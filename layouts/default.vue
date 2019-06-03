@@ -85,6 +85,7 @@
                   </v-list>
                   <v-list>
                     <v-list-tile
+                      nuxt
                       :to="{
                         name: 'id',
                         params: { id: $store.state.authUser.loginid }

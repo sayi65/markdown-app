@@ -102,7 +102,6 @@ export default {
       })
       .then(response => {
         console.log(111111)
-        console.log(response)
       })
       .catch(response => {
         redirect('/errors/404')

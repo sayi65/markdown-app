@@ -1,7 +1,7 @@
 
 
-mutation($userid: String!, $updatedata: users_details_set_input){
-    update_users_datails(where:{users:{loginid:{_eq:$userid}}},
+mutation update_users_datails($userid: String!, $updatedata: users_details_set_input){
+    update_users_details(where:{users:{loginid:{_eq:$userid}}},
         _set: $updatedata
         # {
         #     updatedata = $blob,$image... 
@@ -16,16 +16,16 @@ mutation($userid: String!, $updatedata: users_details_set_input){
         # }
     ){
         returning {
-            userid
-            username
-            blob
             avatarpath
+            username
+            userid
+            blob
             blogurl
             company
+            location
             facebook
             linkedin
-            location
-            username
+            github
         }
     }
 }

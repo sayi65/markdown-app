@@ -120,7 +120,6 @@ export default {
       formdata: {
         username: '',
         blob: '',
-        avatarpath: '',
         blogurl: '',
         company: '',
         facebook: '',
