@@ -1,5 +1,4 @@
-tags:
-  - docker 
+
 
 image: python:2.7
 
@@ -8,6 +7,8 @@ stages:
 
 deploy_job:
   stage: deploy
+  tags:
+    - docker 
   script:
     - pip install --upgrade pip
     - pip install --upgrade awscli
