@@ -1,6 +1,5 @@
 
-
-image: python:2.7
+image: 18.04
 
 stages:
   - deploy
@@ -10,7 +9,5 @@ deploy_job:
   tags:
     - docker 
   script:
-    - pip install --upgrade pip
-    - pip install --upgrade awscli
-    - npm install
-    - npm run build
+    - apt-get update
+    - cat /etc/os-release
