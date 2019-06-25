@@ -1,25 +1,15 @@
 tags:
   - docker 
 
+image: python:2.7
+
 stages:
-  - test
-  - build
   - deploy
 
-test:
-  stage: test
-  script: echo "Running tests"
-
-build:
-  stage: build
-  script: echo "Building the app"
-
-deploy_staging:
+deploy_job:
   stage: deploy
   script:
-    - echo "Deploy to staging server"
-  environment:
-    name: staging
-    url: https://staging.example.com
-  only:
-  - develop
+    - pip install --upgrade pip
+    - pip install --upgrade awscli
+    - npm install
+    - npm run build
