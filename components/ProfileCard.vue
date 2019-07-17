@@ -7,8 +7,8 @@
             $store.getters['userinfo/getuserdetail'].avatarpath === null ||
               $store.getters['userinfo/getuserdetail'].avatarpath === ''
           "
-          lazy-src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153&size=400"
-          src="https://www.gravatar.com/avatar/06351e9c9bc6dc234adc46da4e5cf153&size=400"
+          lazy-src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
+          src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
           :alt="$store.state.authUser.username"
           class="elevation-1"
         />
