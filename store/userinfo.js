@@ -26,6 +26,7 @@ export const actions = {
     await client
       .query({
         query: getUser,
+        fetchPolicy: 'network-only',
         variables: {
           userid: user.userid
         },
@@ -37,6 +38,7 @@ export const actions = {
         }
       })
       .then(({ data }) => {
+        console.log(data)
         if (
           typeof data.users[0] !== 'undefined' &&
           typeof data.users_details[0] !== 'undefined'
@@ -53,6 +55,7 @@ export const actions = {
     await client
       .mutate({
         mutation: updateUser,
+        fetchPolicy: 'no-cache',
         variables: {
           userid: user.userid,
           updatedata: user.data
