@@ -90,6 +90,18 @@ export default {
       ]
     }
   },
+  async asyncData({ store, redirect, params }) {
+    await store
+      .dispatch('userinfo/get_user_info', {
+        userid: params.id
+      })
+      .then(response => {
+        console.log(111111)
+      })
+      .catch(response => {
+        redirect('/errors/404')
+      })
+  },
   methods: {
     followers() {
       console.log(11111111)

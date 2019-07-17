@@ -1,6 +1,6 @@
 <template>
   <v-container grid-list-lg text-xs-center>
-    <v-layout row justify-center wrap>
+    <v-layout justify-space-around row>
       <v-flex xs12 sm4 md4 lg4 xl3>
         <ProfileCard />
       </v-flex>
@@ -89,11 +89,6 @@ export default {
   components: {
     MypageNav,
     ProfileCard
-  },
-  data() {
-    return {
-      userdata: null
-    }
   },
   async asyncData({ store, redirect, params }) {
     await store

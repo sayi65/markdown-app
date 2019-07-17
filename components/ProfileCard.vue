@@ -1,7 +1,7 @@
 <template>
-  <v-layout align-start justify-center column fill-height>
+  <v-layout align-center justify-space-around row>
     <v-flex>
-      <v-card class="mx-2">
+      <v-card class="mx-2 pt-3">
         <v-img
           v-if="
             $store.getters['userinfo/getuserdetail'].avatarpath === null ||
