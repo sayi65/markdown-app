@@ -119,11 +119,12 @@
   </v-container>
 </template>
 <script>
-import SettingNav from '~/components/SettingNav.vue'
 import Dropzone from 'nuxt-dropzone'
+import SettingNav from '~/components/SettingNav.vue'
 import 'nuxt-dropzone/dropzone.css'
 export default {
   layout: 'default',
+  middleware: 'auth',
   components: {
     SettingNav,
     Dropzone

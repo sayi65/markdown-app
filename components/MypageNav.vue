@@ -79,6 +79,12 @@ export default {
           iconClass: 'grey lighten-1 white--text',
           title: 'Followers',
           link: '/' + this.$store.state.userinfo.userdata.loginid + '/followers'
+        },
+        {
+          icon: 'far fa-grin-alt',
+          iconClass: 'grey lighten-1 white--text',
+          title: 'Testing',
+          link: '/' + this.$store.state.userinfo.userdata.loginid + '/auto'
         }
       ]
     }

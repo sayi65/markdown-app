@@ -112,6 +112,7 @@ import SettingNav from '~/components/SettingNav.vue'
 
 export default {
   layout: 'default',
+  middleware: 'auth',
   components: {
     SettingNav
   },
